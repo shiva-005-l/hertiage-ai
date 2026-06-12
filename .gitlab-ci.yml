@@ -1,0 +1,57 @@
+stages:
+  - lint
+  - type-check
+  - test
+  - security
+  - audit
+
+cache:
+  paths:
+    - node_modules/
+
+default:
+  image: node:20
+  before_script:
+    - npm ci
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+    - npm run biome
+    - npm run oxlint
+    - npm run deadcode
+
+prettier:
+  stage: lint
+  script:
+    - npm run check:format
+
+type-check:
+  stage: type-check
+  script:
+    - npm run type-check
+
+test:
+  stage: test
+  script:
+    - npm run coverage
+
+gitleaks:
+  stage: security
+  image: 
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  before_script: []
+  script:
+    - gitleaks detect --source . -v
+
+secretlint:
+  stage: security
+  script:
+    - npm run security
+
+audit:
+  stage: audit
+  script:
+    - npm run audit
