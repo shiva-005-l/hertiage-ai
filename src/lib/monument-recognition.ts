@@ -1,6 +1,6 @@
-import { heritageSites, type HeritageSite } from "@/lib/mock-data";
+import { type HeritageSite, heritageSites } from '@/lib/mock-data';
 
-export type RecognitionSource = "gemini" | "visual" | "filename" | "none";
+export type RecognitionSource = 'gemini' | 'visual' | 'filename' | 'none';
 
 export type MonumentRecognitionResult = {
   recognized: boolean;
@@ -17,28 +17,41 @@ export type MonumentRecognitionResult = {
 };
 
 export const monumentAliases: Record<string, string[]> = {
-  site_1: ["charminar", "char minar", "chaarminar"],
-  site_2: ["golconda", "golkonda", "golconda fort", "golkonda fort"],
-  site_3: ["chowmahalla", "chowmahalla palace", "chow mahalla", "chowmohalla"],
-  site_4: ["qutb shahi tombs", "qutub shahi tombs", "qutb tombs", "qutub tombs"],
-  site_5: ["salar jung", "salar jung museum", "salarjung"],
-  site_6: ["mecca masjid", "makkah masjid", "mecca mosque", "makkah mosque"],
-  site_7: ["falaknuma", "falaknuma palace"],
-  site_8: ["birla mandir", "birla temple", "birla mandir hyderabad"],
-  site_9: ["taramati baradari", "taramati", "baradari"],
-  site_10: ["paigah tombs", "paigah tomb", "paigah"],
+  site_1: ['charminar', 'char minar', 'chaarminar'],
+  site_2: ['golconda', 'golkonda', 'golconda fort', 'golkonda fort'],
+  site_3: ['chowmahalla', 'chowmahalla palace', 'chow mahalla', 'chowmohalla'],
+  site_4: [
+    'qutb shahi tombs',
+    'qutub shahi tombs',
+    'qutb tombs',
+    'qutub tombs',
+  ],
+  site_5: ['salar jung', 'salar jung museum', 'salarjung'],
+  site_6: ['mecca masjid', 'makkah masjid', 'mecca mosque', 'makkah mosque'],
+  site_7: ['falaknuma', 'falaknuma palace'],
+  site_8: ['birla mandir', 'birla temple', 'birla mandir hyderabad'],
+  site_9: ['taramati baradari', 'taramati', 'baradari'],
+  site_10: ['paigah tombs', 'paigah tomb', 'paigah'],
 };
 
 export function normalizeRecognitionText(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
 }
 
-export function findSiteByIdOrName(siteId?: string | null, siteName?: string | null) {
-  const normalizedName = normalizeRecognitionText(siteName ?? "");
+export function findSiteByIdOrName(
+  siteId?: string | null,
+  siteName?: string | null
+) {
+  const normalizedName = normalizeRecognitionText(siteName ?? '');
 
   return (
     heritageSites.find((site) => site.id === siteId) ??
-    heritageSites.find((site) => normalizeRecognitionText(site.name) === normalizedName) ??
+    heritageSites.find(
+      (site) => normalizeRecognitionText(site.name) === normalizedName
+    ) ??
     null
   );
 }
@@ -56,9 +69,11 @@ export function identifySiteFromText(value: string) {
       const normalizedAlias = normalizeRecognitionText(alias);
       if (!normalizedAlias) continue;
 
-      const aliasTokens = normalizedAlias.split(" ");
+      const aliasTokens = normalizedAlias.split(' ');
       const hasExactAlias = normalizedValue.includes(normalizedAlias);
-      const hasAllAliasTokens = aliasTokens.every((token) => normalizedValue.includes(token));
+      const hasAllAliasTokens = aliasTokens.every((token) =>
+        normalizedValue.includes(token)
+      );
       const score = hasExactAlias
         ? 100 + normalizedAlias.length
         : hasAllAliasTokens && aliasTokens.length > 1
@@ -79,7 +94,7 @@ export function recognizedSiteResult(
   uploadedFile: string,
   source: RecognitionSource,
   confidenceScore: number,
-  note: string,
+  note: string
 ): MonumentRecognitionResult {
   return {
     recognized: true,
@@ -96,7 +111,10 @@ export function recognizedSiteResult(
   };
 }
 
-export function unrecognizedResult(uploadedFile: string, note: string): MonumentRecognitionResult {
+export function unrecognizedResult(
+  uploadedFile: string,
+  note: string
+): MonumentRecognitionResult {
   return {
     recognized: false,
     siteId: null,
@@ -104,10 +122,10 @@ export function unrecognizedResult(uploadedFile: string, note: string): Monument
     historicalEra: null,
     architectureStyle: null,
     location: null,
-    confidence: "Not confident",
+    confidence: 'Not confident',
     confidenceScore: 0,
     uploadedFile,
-    source: "none",
+    source: 'none',
     note,
   };
 }

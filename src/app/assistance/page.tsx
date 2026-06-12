@@ -1,13 +1,19 @@
-"use client";
+'use client';
 
-import React from 'react';
+import {
+  AlertTriangle,
+  ArrowRight,
+  MapPin,
+  Phone,
+  ShieldAlert,
+} from 'lucide-react';
 import Link from 'next/link';
-import { Navbar } from "@/components/layout/Navbar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Phone, MapPin, ShieldAlert, AlertTriangle, ArrowRight } from "lucide-react";
-import { useLanguage } from "@/lib/language";
+import type React from 'react';
+import { Navbar } from '@/components/layout/Navbar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/lib/language';
 
 export default function AssistancePage() {
   const { t } = useLanguage();
@@ -21,7 +27,9 @@ export default function AssistancePage() {
             <ShieldAlert className="h-10 w-10 text-destructive" />
             {t('assistance.title')}
           </h1>
-          <p className="text-foreground/70 text-lg">{t('assistance.subtitle')}</p>
+          <p className="text-foreground/70 text-lg">
+            {t('assistance.subtitle')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -32,10 +40,26 @@ export default function AssistancePage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6 space-y-4">
-              <ContactRow title="Police Station" number="100" icon={<ShieldAlert className="h-4 w-4" />} />
-              <ContactRow title="Ambulance" number="108" icon={<Phone className="h-4 w-4" />} />
-              <ContactRow title="Tourist Helpline" number="1363" icon={<Phone className="h-4 w-4" />} />
-              <ContactRow title="Women Helpline" number="1091" icon={<Phone className="h-4 w-4" />} />
+              <ContactRow
+                title="Police Station"
+                number="100"
+                icon={<ShieldAlert className="h-4 w-4" />}
+              />
+              <ContactRow
+                title="Ambulance"
+                number="108"
+                icon={<Phone className="h-4 w-4" />}
+              />
+              <ContactRow
+                title="Tourist Helpline"
+                number="1363"
+                icon={<Phone className="h-4 w-4" />}
+              />
+              <ContactRow
+                title="Women Helpline"
+                number="1091"
+                icon={<Phone className="h-4 w-4" />}
+              />
             </CardContent>
           </Card>
 
@@ -64,7 +88,8 @@ export default function AssistancePage() {
             </CardHeader>
             <CardContent className="space-y-5 text-center">
               <p className="text-sm text-foreground/65">
-                Report garbage overflow, damaged seating, vandalism, or other site issues on the dedicated reporting page.
+                Report garbage overflow, damaged seating, vandalism, or other
+                site issues on the dedicated reporting page.
               </p>
               <Link href="/report">
                 <Button className="gap-2">
@@ -79,7 +104,15 @@ export default function AssistancePage() {
   );
 }
 
-function ContactRow({ title, number, icon }: { title: string, number: string, icon: React.ReactNode }) {
+function ContactRow({
+  title,
+  number,
+  icon,
+}: {
+  title: string;
+  number: string;
+  icon: React.ReactNode;
+}) {
   return (
     <div className="flex items-center justify-between p-3 rounded-lg bg-accent/30 border border-border/50 hover:bg-accent/50 transition-colors">
       <div className="flex items-center gap-3">
@@ -88,18 +121,23 @@ function ContactRow({ title, number, icon }: { title: string, number: string, ic
         </div>
         <span className="font-medium">{title}</span>
       </div>
-      <a href={`tel:${number}`} className="text-xl font-bold tracking-wider text-red-500 hover:underline">
+      <a
+        href={`tel:${number}`}
+        className="text-xl font-bold tracking-wider text-red-500 hover:underline"
+      >
         {number}
       </a>
     </div>
   );
 }
 
-function FacilityRow({ name, distance }: { name: string, distance: string }) {
+function FacilityRow({ name, distance }: { name: string; distance: string }) {
   return (
     <div className="flex items-center justify-between p-3 rounded-lg bg-accent/30 border border-border/50">
       <span className="font-medium">{name}</span>
-      <Badge variant="outline" className="bg-background">{distance}</Badge>
+      <Badge variant="outline" className="bg-background">
+        {distance}
+      </Badge>
     </div>
   );
 }

@@ -50,6 +50,7 @@ A visitor wants to create an account and sign in so they can save favorite monum
 **Independent Test**: Register a new account, verify email/credential rules, and log in successfully.
 
 **Acceptance Scenarios**:
+
 1. **Given** a new visitor, **when** they sign up with email and password, **then** an account is created and they are redirected to the visitor dashboard.
 2. **Given** a registered visitor, **when** they enter valid credentials, **then** they are authenticated and receive access to user features.
 
@@ -64,6 +65,7 @@ An admin wants to add, edit, and archive monuments from a central dashboard so t
 **Independent Test**: Use the admin dashboard to create a monument record, edit details, and set the monument to inactive.
 
 **Acceptance Scenarios**:
+
 1. **Given** an admin, **when** they open the monument management page, **then** they see a list of monuments with edit and archive controls.
 2. **Given** an admin editing a monument, **when** they update description or location, **then** the changes persist in the database and user view updates.
 
@@ -78,6 +80,7 @@ A visitor wants to discover heritage sites on an interactive map so they can cho
 **Independent Test**: Open the map view and verify monument markers load and details appear on click.
 
 **Acceptance Scenarios**:
+
 1. **Given** a visitor on the monuments page, **when** they view the map, **then** Leaflet markers display monument locations.
 2. **Given** a visitor clicks a marker, **when** they select a monument, **then** they navigate to the monument detail page.
 
@@ -92,6 +95,7 @@ A visitor wants to scan a monument QR code at the site and immediately view the 
 **Independent Test**: Navigate to a QR-generated URL and confirm it loads the correct monument detail page.
 
 **Acceptance Scenarios**:
+
 1. **Given** a visitor scanning a QR code, **when** they open the URL, **then** they see the mapped monument detail page with relevant information.
 2. **Given** the monument is archived, **when** a QR code is scanned, **then** the visitor receives a message that the monument is unavailable or moved.
 
@@ -106,6 +110,7 @@ A registered visitor wants to rate a monument and write a review so other travel
 **Independent Test**: Submit a review with rating and text; verify it appears under the monument and updates the average score.
 
 **Acceptance Scenarios**:
+
 1. **Given** a logged-in visitor, **when** they submit a star rating and comment, **then** the review stores to MongoDB and is displayed publicly.
 2. **Given** a monument with reviews, **when** a page loads, **then** the average rating and latest reviews appear.
 
@@ -120,6 +125,7 @@ A visitor wants to ask the AI assistant questions about a monument or local heri
 **Independent Test**: Ask a monument-specific question and verify the AI returns a concise, relevant response.
 
 **Acceptance Scenarios**:
+
 1. **Given** a visitor on a monument page, **when** they ask a heritage question, **then** the assistant provides an answer that references the monument.
 2. **Given** a generic heritage query, **when** the user asks for nearby itinerary ideas, **then** the assistant returns a suggested tour plan.
 
@@ -134,6 +140,7 @@ A visitor wants a recommended itinerary based on interests, time availability, a
 **Independent Test**: Input travel preferences and verify the system returns a multi-stop itinerary with monuments, routes, and timing suggestions.
 
 **Acceptance Scenarios**:
+
 1. **Given** a visitor selects preferences, **when** they request a trip plan, **then** a recommended route with monument stops is generated.
 2. **Given** constraints such as available hours, **when** the user submits them, **then** the itinerary respects the time limit.
 
@@ -190,6 +197,7 @@ HeritageAI is a modern hybrid web application with a React/Tailwind frontend, No
 - `lastLoginAt`: date
 
 Indexes:
+
 - `email` unique
 - `role`
 
@@ -203,7 +211,7 @@ Indexes:
 - `location`: {
   - `type`: 'Point',
   - `coordinates`: [longitude, latitude]
-  }
+    }
 - `address`: string
 - `images`: array of strings
 - `history`: string
@@ -217,6 +225,7 @@ Indexes:
 - `metaTags`: object
 
 Indexes:
+
 - `slug` unique
 - `location` 2dsphere
 - `status`
@@ -234,6 +243,7 @@ Indexes:
 - `updatedAt`: date
 
 Indexes:
+
 - `monumentId`
 - `userId`
 - `rating`
@@ -249,7 +259,7 @@ Indexes:
   - `monumentId`: ObjectId,
   - `scheduledTime`: date/time optional,
   - `notes`: string
-  }
+    }
 - `createdAt`: date
 - `updatedAt`: date
 

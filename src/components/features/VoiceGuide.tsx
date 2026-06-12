@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Play, Pause, Square } from 'lucide-react';
+import { Pause, Play, Square, Volume2, VolumeX } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useLanguage, languages } from '@/lib/language';
 import type { LanguageCode } from '@/lib/language';
+import { languages, useLanguage } from '@/lib/language';
 
 type VoiceGuideProps = {
   text: string;
@@ -13,37 +13,39 @@ type VoiceGuideProps = {
 };
 
 type VoiceLanguageCode = LanguageCode;
-type PlaybackStatus = "idle" | "loading" | "playing" | "paused";
+type PlaybackStatus = 'idle' | 'loading' | 'playing' | 'paused';
 
 const speechLanguage: Record<VoiceLanguageCode, string> = {
-  en: "en-US",
-  te: "te-IN",
-  hi: "hi-IN",
-  ta: "ta-IN",
-  kn: "kn-IN",
+  en: 'en-US',
+  te: 'te-IN',
+  hi: 'hi-IN',
+  ta: 'ta-IN',
+  kn: 'kn-IN',
 };
 
 const ttsLanguage: Record<VoiceLanguageCode, string> = {
-  en: "en",
-  te: "te",
-  hi: "hi",
-  ta: "ta",
-  kn: "kn",
+  en: 'en',
+  te: 'te',
+  hi: 'hi',
+  ta: 'ta',
+  kn: 'kn',
 };
 
-const remoteTtsHosts = ["translate.google.com", "translate.google.co.in"];
+const remoteTtsHosts = ['translate.google.com', 'translate.google.co.in'];
 
 function pickVoice(voices: SpeechSynthesisVoice[], lang: string) {
-  const languageRoot = lang.split("-")[0];
+  const languageRoot = lang.split('-')[0];
   return (
     voices.find((voice) => voice.lang.toLowerCase() === lang.toLowerCase()) ??
-    voices.find((voice) => voice.lang.toLowerCase().startsWith(`${languageRoot}-`)) ??
+    voices.find((voice) =>
+      voice.lang.toLowerCase().startsWith(`${languageRoot}-`)
+    ) ??
     voices.find((voice) => voice.lang.toLowerCase().includes(languageRoot))
   );
 }
 
 export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
-  const [playbackStatus, setPlaybackStatus] = useState<PlaybackStatus>("idle");
+  const [playbackStatus, setPlaybackStatus] = useState<PlaybackStatus>('idle');
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -54,17 +56,18 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
   const playbackIdRef = useRef(0);
   const userPausedRef = useRef(false);
   const browserSpeechStartTimerRef = useRef<number | null>(null);
-  const isPlaying = playbackStatus === "playing";
-  const isPaused = playbackStatus === "paused";
-  const isLoadingAudio = playbackStatus === "loading";
-  
+  const isPlaying = playbackStatus === 'playing';
+  const isPaused = playbackStatus === 'paused';
+  const isLoadingAudio = playbackStatus === 'loading';
+
   const { language } = useLanguage();
   const guideLanguage: VoiceLanguageCode = language;
-  const selectedLanguageName = languages.find((lang) => lang.code === language)?.name ?? "English";
+  const selectedLanguageName =
+    languages.find((lang) => lang.code === language)?.name ?? 'English';
   const guideTextForLanguage = localizedText?.[guideLanguage] ?? text;
 
   const resetPlaybackState = () => {
-    setPlaybackStatus("idle");
+    setPlaybackStatus('idle');
   };
 
   const clearBrowserSpeechStartTimer = () => {
@@ -77,7 +80,7 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
   const stopRemoteAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();
-      audioRef.current.src = "";
+      audioRef.current.src = '';
       audioRef.current = null;
     }
     audioQueueRef.current = [];
@@ -89,14 +92,16 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
     if (!synthRef.current) return undefined;
 
     const lang = speechLanguage[guideLanguage];
-    const availableVoices = voices.length ? voices : synthRef.current.getVoices();
+    const availableVoices = voices.length
+      ? voices
+      : synthRef.current.getVoices();
     return pickVoice(availableVoices, lang);
   };
 
   const playBrowserSpeech = (
     guideText: string,
     playbackId: number,
-    options: { onError?: () => void } = {},
+    options: { onError?: () => void } = {}
   ) => {
     if (!synthRef.current) return false;
 
@@ -113,7 +118,7 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
     utterance.onstart = () => {
       if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
       clearBrowserSpeechStartTimer();
-      setPlaybackStatus("playing");
+      setPlaybackStatus('playing');
     };
 
     utterance.onend = () => {
@@ -154,7 +159,7 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
 
   const splitForTts = (guideText: string) => {
     const sentences = guideText
-      .replace(/\s+/g, " ")
+      .replace(/\s+/g, ' ')
       .split(/(?<=[.!?।])\s+/)
       .map((sentence) => sentence.trim())
       .filter(Boolean);
@@ -177,11 +182,15 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
   const playSameLanguageBrowserFallback = (playbackId: number) => {
     if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
 
-    const playedNativeText = playBrowserSpeech(guideTextForLanguage, playbackId, {
-      onError: () => {
-        resetPlaybackState();
-      },
-    });
+    const playedNativeText = playBrowserSpeech(
+      guideTextForLanguage,
+      playbackId,
+      {
+        onError: () => {
+          resetPlaybackState();
+        },
+      }
+    );
 
     if (!playedNativeText) {
       resetPlaybackState();
@@ -189,10 +198,11 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
   };
 
   const getRemoteTtsUrl = (chunk: string) => {
-    const host = remoteTtsHosts[remoteHostIndexRef.current] ?? remoteTtsHosts[0];
+    const host =
+      remoteTtsHosts[remoteHostIndexRef.current] ?? remoteTtsHosts[0];
     const params = new URLSearchParams({
-      ie: "UTF-8",
-      client: "tw-ob",
+      ie: 'UTF-8',
+      client: 'tw-ob',
       tl: ttsLanguage[guideLanguage],
       q: chunk,
       _: `${Date.now()}-${audioIndexRef.current}`,
@@ -213,12 +223,12 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
     }
 
     const audio = new Audio(getRemoteTtsUrl(chunk));
-    audio.preload = "auto";
+    audio.preload = 'auto';
 
     audioRef.current = audio;
     audio.onplaying = () => {
       if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
-      setPlaybackStatus("playing");
+      setPlaybackStatus('playing');
     };
     audio.onended = () => {
       if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
@@ -261,7 +271,7 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
       loadVoices();
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
-    
+
     return () => {
       playbackIdRef.current += 1;
       userPausedRef.current = false;
@@ -295,17 +305,18 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
       if (audioRef.current) {
         const playbackId = playbackIdRef.current;
         audioRef.current.play().catch(() => {
-          if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
+          if (playbackId !== playbackIdRef.current || userPausedRef.current)
+            return;
           stopRemoteAudio();
           playSameLanguageBrowserFallback(playbackId);
         });
-        setPlaybackStatus("playing");
+        setPlaybackStatus('playing');
         return;
       }
 
       if (synthRef.current) {
         synthRef.current.resume();
-        setPlaybackStatus("playing");
+        setPlaybackStatus('playing');
       }
       return;
     }
@@ -319,16 +330,21 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
     audioQueueRef.current = splitForTts(guideTextForLanguage);
     audioIndexRef.current = 0;
     remoteHostIndexRef.current = 0;
-    setPlaybackStatus("loading");
+    setPlaybackStatus('loading');
 
     const playbackId = playbackIdRef.current;
     if (getMatchingVoice()) {
-      const startedBrowserSpeech = playBrowserSpeech(guideTextForLanguage, playbackId, {
-        onError: () => {
-          if (playbackId !== playbackIdRef.current || userPausedRef.current) return;
-          playRemoteTtsChunk(playbackId);
-        },
-      });
+      const startedBrowserSpeech = playBrowserSpeech(
+        guideTextForLanguage,
+        playbackId,
+        {
+          onError: () => {
+            if (playbackId !== playbackIdRef.current || userPausedRef.current)
+              return;
+            playRemoteTtsChunk(playbackId);
+          },
+        }
+      );
 
       if (startedBrowserSpeech) return;
     }
@@ -340,14 +356,20 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
     if (audioRef.current) {
       userPausedRef.current = true;
       audioRef.current.pause();
-      setPlaybackStatus("paused");
+      setPlaybackStatus('paused');
       return;
     }
 
-    if (synthRef.current && (synthRef.current.speaking || synthRef.current.pending || isPlaying || isLoadingAudio)) {
+    if (
+      synthRef.current &&
+      (synthRef.current.speaking ||
+        synthRef.current.pending ||
+        isPlaying ||
+        isLoadingAudio)
+    ) {
       userPausedRef.current = true;
       synthRef.current.pause();
-      setPlaybackStatus("paused");
+      setPlaybackStatus('paused');
     }
   };
 
@@ -365,19 +387,23 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
   return (
     <div className="flex items-center gap-4 bg-accent/50 p-4 rounded-xl border border-border mt-4">
       <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary/20 text-primary">
-        {isPlaying || isLoadingAudio ? <Volume2 className="h-5 w-5 animate-pulse" /> : <VolumeX className="h-5 w-5" />}
+        {isPlaying || isLoadingAudio ? (
+          <Volume2 className="h-5 w-5 animate-pulse" />
+        ) : (
+          <VolumeX className="h-5 w-5" />
+        )}
       </div>
-      
+
       <div className="flex-1">
         <h4 className="text-sm font-semibold">{title} Audio Guide</h4>
         <p className="text-xs text-foreground/60">
           {isLoadingAudio
             ? `Loading ${selectedLanguageName} audio...`
             : isPlaying
-            ? `Playing in ${selectedLanguageName}...`
-            : isPaused
-            ? 'Paused'
-            : `Ready in ${selectedLanguageName}`}
+              ? `Playing in ${selectedLanguageName}...`
+              : isPaused
+                ? 'Paused'
+                : `Ready in ${selectedLanguageName}`}
         </p>
       </div>
 
@@ -388,8 +414,8 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
           className="h-8 w-8 rounded-full"
           onClick={handlePlay}
           disabled={isPlaying || isLoadingAudio}
-          title={isPaused ? "Resume audio guide" : "Play audio guide"}
-          aria-label={isPaused ? "Resume audio guide" : "Play audio guide"}
+          title={isPaused ? 'Resume audio guide' : 'Play audio guide'}
+          aria-label={isPaused ? 'Resume audio guide' : 'Play audio guide'}
         >
           <Play className="h-4 w-4" />
         </Button>
@@ -405,7 +431,14 @@ export function VoiceGuide({ text, title, localizedText }: VoiceGuideProps) {
           <Pause className="h-4 w-4" />
         </Button>
         {(isPlaying || isLoadingAudio || isPaused) && (
-          <Button size="icon" variant="destructive" className="h-8 w-8 rounded-full" onClick={handleStop} title="Stop audio guide" aria-label="Stop audio guide">
+          <Button
+            size="icon"
+            variant="destructive"
+            className="h-8 w-8 rounded-full"
+            onClick={handleStop}
+            title="Stop audio guide"
+            aria-label="Stop audio guide"
+          >
             <Square className="h-4 w-4 fill-current" />
           </Button>
         )}

@@ -1,10 +1,27 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Globe2,
+  Landmark,
+  LogIn,
+  Mail,
+  Phone,
+  User,
+} from 'lucide-react';
 import Link from 'next/link';
-import { Landmark, Mail, Phone, User, LogIn, Eye, EyeOff, ArrowRight, Globe2 } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import {
   createAuthSession,
   generateOtp,
@@ -59,7 +76,9 @@ export default function LoginPage() {
     setAuthError('');
 
     if (otp !== generatedOtp) {
-      setAuthError('The OTP does not match. Please enter the latest generated code.');
+      setAuthError(
+        'The OTP does not match. Please enter the latest generated code.'
+      );
       return;
     }
 
@@ -130,7 +149,8 @@ export default function LoginPage() {
 
   const canSubmitOtp = otp.length === 6 && Boolean(generatedOtp);
 
-  const canSubmitPassword = email.trim().length > 0 && password.trim().length > 0;
+  const canSubmitPassword =
+    email.trim().length > 0 && password.trim().length > 0;
 
   const otpMessage = generatedOtp
     ? `OTP generated for ${phone}. Your code is ${generatedOtp}.`
@@ -138,9 +158,10 @@ export default function LoginPage() {
 
   const passwordPlaceholder = 'Enter your password';
 
-  const loginDescription = mode === 'login'
-    ? 'Sign in to continue your heritage journey.'
-    : 'Sign in to continue your heritage journey';
+  const loginDescription =
+    mode === 'login'
+      ? 'Sign in to continue your heritage journey.'
+      : 'Sign in to continue your heritage journey';
 
   return (
     <div className="min-h-screen flex">
@@ -154,7 +175,9 @@ export default function LoginPage() {
 
         <Link href="/" className="flex items-center space-x-2 relative z-10">
           <Landmark className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold tracking-tight">Smart Heritage</span>
+          <span className="text-2xl font-bold tracking-tight">
+            Smart Heritage
+          </span>
         </Link>
 
         <div className="relative z-10 space-y-8">
@@ -166,26 +189,40 @@ export default function LoginPage() {
               </span>
             </h2>
             <p className="text-foreground/70 text-lg leading-relaxed">
-              Discover monuments, earn digital stamps, get AI-powered tours, and explore history like never before.
+              Discover monuments, earn digital stamps, get AI-powered tours, and
+              explore history like never before.
             </p>
           </div>
 
           <div className="space-y-4">
             {[
               { icon: '🤖', text: 'AI Chatbot — Ask anything about monuments' },
-              { icon: '🎙️', text: 'Voice Guide — Automatic narration at sites' },
+              {
+                icon: '🎙️',
+                text: 'Voice Guide — Automatic narration at sites',
+              },
               { icon: '🏆', text: 'Digital Passport — Earn badges & stamps' },
-              { icon: '📸', text: 'Image Recognition — Snap & identify instantly' },
+              {
+                icon: '📸',
+                text: 'Image Recognition — Snap & identify instantly',
+              },
             ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 bg-accent/50 backdrop-blur-sm rounded-xl px-4 py-3 border border-border/30">
+              <div
+                key={i}
+                className="flex items-center gap-3 bg-accent/50 backdrop-blur-sm rounded-xl px-4 py-3 border border-border/30"
+              >
                 <span className="text-xl">{feature.icon}</span>
-                <span className="text-sm text-foreground/80">{feature.text}</span>
+                <span className="text-sm text-foreground/80">
+                  {feature.text}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="text-foreground/40 text-sm relative z-10">© 2026 Smart Heritage Guide — Hackathon Project</p>
+        <p className="text-foreground/40 text-sm relative z-10">
+          © 2026 Smart Heritage Guide — Hackathon Project
+        </p>
       </div>
 
       {/* Right Panel - Auth Form */}
@@ -206,7 +243,13 @@ export default function LoginPage() {
             <CardContent className="space-y-6">
               {/* Auth Mode Tabs */}
               <div className="flex bg-accent rounded-lg p-1 gap-1">
-                {([['login', 'Email'], ['otp', 'OTP'], ['guest', 'Guest']] as [AuthMode, string][]).map(([m, label]) => (
+                {(
+                  [
+                    ['login', 'Email'],
+                    ['otp', 'OTP'],
+                    ['guest', 'Guest'],
+                  ] as [AuthMode, string][]
+                ).map(([m, label]) => (
                   <button
                     key={m}
                     onClick={() => handleModeChange(m)}
@@ -229,9 +272,15 @@ export default function LoginPage() {
 
               {/* Email Login */}
               {mode === 'login' && (
-                <form onSubmit={handlePasswordSubmit} className="space-y-4" autoComplete="off">
+                <form
+                  onSubmit={handlePasswordSubmit}
+                  className="space-y-4"
+                  autoComplete="off"
+                >
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Email or Phone Number</label>
+                    <label className="text-sm font-medium">
+                      Email or Phone Number
+                    </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/40" />
                       <input
@@ -261,14 +310,30 @@ export default function LoginPage() {
                         className="w-full bg-accent/50 border border-border rounded-lg pl-10 pr-10 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                         required
                       />
-                      <button type="button" onClick={handleTogglePassword} className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground">
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      <button
+                        type="button"
+                        onClick={handleTogglePassword}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
                       </button>
                     </div>
                   </div>
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20" disabled={isLoading || !canSubmitPassword}>
-                    {isLoading ? 'Signing In...' : (
-                      <><LogIn className="h-4 w-4 mr-2" /> Sign In</>
+                  <Button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
+                    disabled={isLoading || !canSubmitPassword}
+                  >
+                    {isLoading ? (
+                      'Signing In...'
+                    ) : (
+                      <>
+                        <LogIn className="h-4 w-4 mr-2" /> Sign In
+                      </>
                     )}
                   </Button>
                 </form>
@@ -292,8 +357,18 @@ export default function LoginPage() {
                     </div>
                   </div>
                   {!otpSent ? (
-                    <Button onClick={handleSendOtp} className="w-full bg-primary hover:bg-primary/90" disabled={isLoading || !canSendOtp}>
-                      {isLoading ? 'Generating...' : <><ArrowRight className="h-4 w-4 mr-2" /> Generate OTP</>}
+                    <Button
+                      onClick={handleSendOtp}
+                      className="w-full bg-primary hover:bg-primary/90"
+                      disabled={isLoading || !canSendOtp}
+                    >
+                      {isLoading ? (
+                        'Generating...'
+                      ) : (
+                        <>
+                          <ArrowRight className="h-4 w-4 mr-2" /> Generate OTP
+                        </>
+                      )}
                     </Button>
                   ) : (
                     <>
@@ -307,14 +382,24 @@ export default function LoginPage() {
                           maxLength={6}
                           className="w-full bg-accent/50 border border-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-center tracking-[0.5em] font-mono text-lg transition-all"
                         />
-                        <p className="text-xs text-green-500 text-center">{otpMessage}</p>
+                        <p className="text-xs text-green-500 text-center">
+                          {otpMessage}
+                        </p>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
-                        <Button onClick={resetOtp} variant="outline" disabled={isLoading}>
+                        <Button
+                          onClick={resetOtp}
+                          variant="outline"
+                          disabled={isLoading}
+                        >
                           Change Number
                         </Button>
-                        <Button onClick={handleOtpSubmit} className="bg-primary hover:bg-primary/90" disabled={isLoading || !canSubmitOtp}>
-                        {isLoading ? 'Verifying...' : 'Verify & Sign In'}
+                        <Button
+                          onClick={handleOtpSubmit}
+                          className="bg-primary hover:bg-primary/90"
+                          disabled={isLoading || !canSubmitOtp}
+                        >
+                          {isLoading ? 'Verifying...' : 'Verify & Sign In'}
                         </Button>
                       </div>
                     </>
@@ -326,11 +411,21 @@ export default function LoginPage() {
               {mode === 'guest' && (
                 <div className="space-y-4">
                   <div className="bg-accent/50 rounded-xl p-4 border border-border/50 text-sm text-foreground/70 space-y-2">
-                    <p className="font-medium text-foreground">👀 Browse as Guest</p>
-                    <p>You can explore heritage sites, use the AI chatbot, and listen to voice guides. Sign up to unlock your digital passport and badges.</p>
+                    <p className="font-medium text-foreground">
+                      👀 Browse as Guest
+                    </p>
+                    <p>
+                      You can explore heritage sites, use the AI chatbot, and
+                      listen to voice guides. Sign up to unlock your digital
+                      passport and badges.
+                    </p>
                   </div>
                   <Link href="/">
-                    <Button className="w-full" variant="outline" onClick={handleGuestContinue}>
+                    <Button
+                      className="w-full"
+                      variant="outline"
+                      onClick={handleGuestContinue}
+                    >
                       <User className="h-4 w-4 mr-2" /> Continue as Guest
                     </Button>
                   </Link>
@@ -344,15 +439,21 @@ export default function LoginPage() {
                     <div className="w-full border-t border-border" />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-foreground/40">Or continue with</span>
+                    <span className="bg-card px-2 text-foreground/40">
+                      Or continue with
+                    </span>
                   </div>
                 </div>
               )}
 
               {/* Google OAuth */}
               {mode !== 'guest' && (
-                <Button variant="outline" className="w-full gap-2 hover:bg-accent/50" onClick={handleGoogleSignIn}>
-                <Globe2 className="h-4 w-4" />
+                <Button
+                  variant="outline"
+                  className="w-full gap-2 hover:bg-accent/50"
+                  onClick={handleGoogleSignIn}
+                >
+                  <Globe2 className="h-4 w-4" />
                   Sign in with Google
                 </Button>
               )}
@@ -361,7 +462,10 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-foreground/50">
             Don&apos;t have an account?{' '}
-            <Link href="/login" className="text-primary hover:underline font-medium">
+            <Link
+              href="/login"
+              className="text-primary hover:underline font-medium"
+            >
               Create one free
             </Link>
           </p>

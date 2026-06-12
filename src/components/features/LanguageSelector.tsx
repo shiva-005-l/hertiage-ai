@@ -1,20 +1,21 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
 import { Globe } from 'lucide-react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { languages, useLanguage } from '@/lib/language';
 
 export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const currentLang = languages.find((lang) => lang.code === language) ?? languages[0];
+  const currentLang =
+    languages.find((lang) => lang.code === language) ?? languages[0];
 
   return (
     <div className="relative">
-      <Button 
-        variant="ghost" 
-        size="sm" 
+      <Button
+        variant="ghost"
+        size="sm"
         className="gap-2 text-foreground/80 hover:text-primary"
         onClick={() => setIsOpen(!isOpen)}
       >

@@ -1,0 +1,12 @@
+title = "HeritageAI Secret Scanning"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Repository documentation and examples"
+paths = [
+  '''^README\.md$''',
+  '''^CHANGELOG\.md$''',
+  '''^\.env\.example$''',
+]

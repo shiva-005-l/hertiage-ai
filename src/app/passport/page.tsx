@@ -1,15 +1,35 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Navbar } from "@/components/layout/Navbar";
-import { mockUser, heritageSites } from "@/lib/mock-data";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Medal, Trophy, Stamp, Star, Map, Calendar, Pencil, Save, X } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { DemoUser, readAuthSession, updateCurrentUserName } from "@/lib/auth";
+import {
+  Calendar,
+  Map,
+  Medal,
+  Pencil,
+  Save,
+  Stamp,
+  Star,
+  Trophy,
+  X,
+} from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Navbar } from '@/components/layout/Navbar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import {
+  type DemoUser,
+  readAuthSession,
+  updateCurrentUserName,
+} from '@/lib/auth';
+import { heritageSites, mockUser } from '@/lib/mock-data';
 
 export default function PassportPage() {
   const [currentUser, setCurrentUser] = useState<DemoUser | null>(null);
@@ -23,9 +43,15 @@ export default function PassportPage() {
   const displayIdentifier = currentUser?.identifier || mockUser.email;
   const pointsEarned = visitedCount * 250;
   const explorerSince = currentUser
-    ? new Date(currentUser.signedInAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })
+    ? new Date(currentUser.signedInAt).toLocaleDateString(undefined, {
+        month: 'short',
+        year: 'numeric',
+      })
     : mockUser.joinDate;
-  const earnedBadges = mockUser.badges.slice(0, Math.min(mockUser.badges.length, visitedCount));
+  const earnedBadges = mockUser.badges.slice(
+    0,
+    Math.min(mockUser.badges.length, visitedCount)
+  );
 
   useEffect(() => {
     const loadAuth = () => {
@@ -35,11 +61,11 @@ export default function PassportPage() {
     };
 
     loadAuth();
-    window.addEventListener("smart-heritage-auth-updated", loadAuth);
-    window.addEventListener("storage", loadAuth);
+    window.addEventListener('smart-heritage-auth-updated', loadAuth);
+    window.addEventListener('storage', loadAuth);
     return () => {
-      window.removeEventListener("smart-heritage-auth-updated", loadAuth);
-      window.removeEventListener("storage", loadAuth);
+      window.removeEventListener('smart-heritage-auth-updated', loadAuth);
+      window.removeEventListener('storage', loadAuth);
     };
   }, []);
 
@@ -66,17 +92,34 @@ export default function PassportPage() {
             Digital Heritage Passport
           </h1>
           <p className="text-foreground/65 text-lg">
-            Track your visits, earn points, collect stamps, and unlock achievements as you explore India&apos;s heritage.
+            Track your visits, earn points, collect stamps, and unlock
+            achievements as you explore India&apos;s heritage.
           </p>
         </div>
 
         {/* Top Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {[ 
-            { label: "Points Earned", value: pointsEarned.toLocaleString(), icon: <Star className="h-4 w-4 text-primary" /> },
-            { label: "Sites Visited", value: `${visitedCount} / ${totalSites}`, icon: <Map className="h-4 w-4 text-primary" /> },
-            { label: "Badges Earned", value: earnedBadges.length, icon: <Medal className="h-4 w-4 text-primary" /> },
-            { label: "Explorer Since", value: explorerSince, icon: <Calendar className="h-4 w-4 text-primary" /> },
+          {[
+            {
+              label: 'Points Earned',
+              value: pointsEarned.toLocaleString(),
+              icon: <Star className="h-4 w-4 text-primary" />,
+            },
+            {
+              label: 'Sites Visited',
+              value: `${visitedCount} / ${totalSites}`,
+              icon: <Map className="h-4 w-4 text-primary" />,
+            },
+            {
+              label: 'Badges Earned',
+              value: earnedBadges.length,
+              icon: <Medal className="h-4 w-4 text-primary" />,
+            },
+            {
+              label: 'Explorer Since',
+              value: explorerSince,
+              icon: <Calendar className="h-4 w-4 text-primary" />,
+            },
           ].map((stat) => (
             <Card key={stat.label} className="glass border-border/50">
               <CardContent className="p-4 flex items-center gap-3">
@@ -84,8 +127,12 @@ export default function PassportPage() {
                   {stat.icon}
                 </div>
                 <div>
-                  <p className="text-xs text-foreground/55 font-medium">{stat.label}</p>
-                  <p className="font-bold text-lg leading-tight">{stat.value}</p>
+                  <p className="text-xs text-foreground/55 font-medium">
+                    {stat.label}
+                  </p>
+                  <p className="font-bold text-lg leading-tight">
+                    {stat.value}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -111,15 +158,27 @@ export default function PassportPage() {
                         <input
                           type="text"
                           value={profileName}
-                          onChange={(event) => setProfileName(event.target.value)}
+                          onChange={(event) =>
+                            setProfileName(event.target.value)
+                          }
                           className="w-full rounded-lg border border-border bg-accent/50 px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50"
                           maxLength={40}
                         />
                         <div className="flex gap-2">
-                          <Button size="sm" className="h-8 gap-1" onClick={handleSaveName} disabled={!profileName.trim()}>
+                          <Button
+                            size="sm"
+                            className="h-8 gap-1"
+                            onClick={handleSaveName}
+                            disabled={!profileName.trim()}
+                          >
                             <Save className="h-3.5 w-3.5" /> Save
                           </Button>
-                          <Button size="sm" variant="outline" className="h-8 gap-1" onClick={handleCancelEdit}>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 gap-1"
+                            onClick={handleCancelEdit}
+                          >
                             <X className="h-3.5 w-3.5" /> Cancel
                           </Button>
                         </div>
@@ -127,11 +186,22 @@ export default function PassportPage() {
                     ) : (
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
-                          <h3 className="font-semibold text-lg leading-tight truncate">{displayName}</h3>
-                          <p className="text-sm text-foreground/55 truncate">{displayIdentifier}</p>
-                          <Badge variant="secondary" className="mt-1 text-xs">{mockUser.level}</Badge>
+                          <h3 className="font-semibold text-lg leading-tight truncate">
+                            {displayName}
+                          </h3>
+                          <p className="text-sm text-foreground/55 truncate">
+                            {displayIdentifier}
+                          </p>
+                          <Badge variant="secondary" className="mt-1 text-xs">
+                            {mockUser.level}
+                          </Badge>
                         </div>
-                        <Button size="icon" variant="ghost" className="h-8 w-8 shrink-0" onClick={() => setIsEditingName(true)}>
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-8 w-8 shrink-0"
+                          onClick={() => setIsEditingName(true)}
+                        >
                           <Pencil className="h-4 w-4" />
                           <span className="sr-only">Edit profile name</span>
                         </Button>
@@ -152,7 +222,10 @@ export default function PassportPage() {
                 </div>
 
                 <Link href="/explore">
-                  <Button className="w-full bg-primary/90 hover:bg-primary text-primary-foreground" size="sm">
+                  <Button
+                    className="w-full bg-primary/90 hover:bg-primary text-primary-foreground"
+                    size="sm"
+                  >
                     Explore More Sites
                   </Button>
                 </Link>
@@ -166,7 +239,9 @@ export default function PassportPage() {
               <CardTitle className="flex items-center gap-2">
                 <Medal className="h-5 w-5 text-primary" /> Achieved Badges
               </CardTitle>
-              <CardDescription>Unlock more by visiting sites and using features</CardDescription>
+              <CardDescription>
+                Unlock more by visiting sites and using features
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -175,24 +250,38 @@ export default function PassportPage() {
                     key={badge.id}
                     className="flex flex-col items-center justify-center p-4 rounded-xl bg-accent/60 border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-all cursor-default group"
                   >
-                    <span className="text-4xl mb-2 group-hover:scale-110 transition-transform">{badge.icon}</span>
-                    <span className="font-semibold text-sm text-center leading-tight">{badge.name}</span>
-                    <span className="text-xs text-foreground/50 text-center mt-1 leading-tight">{badge.description}</span>
-                    <span className="text-xs text-primary/70 mt-1.5">{badge.unlockedAt}</span>
+                    <span className="text-4xl mb-2 group-hover:scale-110 transition-transform">
+                      {badge.icon}
+                    </span>
+                    <span className="font-semibold text-sm text-center leading-tight">
+                      {badge.name}
+                    </span>
+                    <span className="text-xs text-foreground/50 text-center mt-1 leading-tight">
+                      {badge.description}
+                    </span>
+                    <span className="text-xs text-primary/70 mt-1.5">
+                      {badge.unlockedAt}
+                    </span>
                   </div>
                 ))}
                 {earnedBadges.length === 0 && (
                   <div className="col-span-2 flex min-h-36 flex-col items-center justify-center rounded-xl border border-dashed border-border/50 bg-accent/30 p-4 text-center sm:col-span-4">
                     <Stamp className="mb-2 h-8 w-8 text-foreground/35" />
                     <span className="font-semibold text-sm">No badges yet</span>
-                    <span className="text-xs text-foreground/50 mt-1">Collect your first monument stamp to unlock one.</span>
+                    <span className="text-xs text-foreground/50 mt-1">
+                      Collect your first monument stamp to unlock one.
+                    </span>
                   </div>
                 )}
                 {/* Locked badge teaser */}
                 <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-accent/30 border border-dashed border-border/40 opacity-50">
                   <span className="text-4xl mb-2 grayscale">🏛️</span>
-                  <span className="font-semibold text-sm text-center">Grand Tour</span>
-                  <span className="text-xs text-foreground/50 text-center mt-1">Visit all {totalSites} sites</span>
+                  <span className="font-semibold text-sm text-center">
+                    Grand Tour
+                  </span>
+                  <span className="text-xs text-foreground/50 text-center mt-1">
+                    Visit all {totalSites} sites
+                  </span>
                   <span className="text-xs mt-1.5">🔒 Locked</span>
                 </div>
               </div>
@@ -212,8 +301,8 @@ export default function PassportPage() {
                 key={site.id}
                 className={`overflow-hidden transition-all duration-300 ${
                   isVisited
-                    ? "border-primary/40 shadow-lg shadow-primary/10"
-                    : "opacity-60 border-border/30"
+                    ? 'border-primary/40 shadow-lg shadow-primary/10'
+                    : 'opacity-60 border-border/30'
                 }`}
               >
                 <div className="h-48 overflow-hidden relative">
@@ -231,7 +320,9 @@ export default function PassportPage() {
                   )}
                   {!isVisited && (
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
-                      <span className="text-white/60 font-medium text-sm">Not Visited Yet</span>
+                      <span className="text-white/60 font-medium text-sm">
+                        Not Visited Yet
+                      </span>
                     </div>
                   )}
                 </div>
@@ -247,7 +338,9 @@ export default function PassportPage() {
                         Stamp Collected ✓
                       </Badge>
                     ) : (
-                      <Badge variant="outline" className="border-dashed">Visit to Collect</Badge>
+                      <Badge variant="outline" className="border-dashed">
+                        Visit to Collect
+                      </Badge>
                     )}
                   </div>
                 </CardContent>

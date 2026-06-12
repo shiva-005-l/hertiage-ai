@@ -1,0 +1,38 @@
+stages:
+  - lint
+  - test
+  - security
+  - audit
+
+cache:
+  paths:
+    - node_modules/
+
+default:
+  image: node:20
+  before_script:
+    - npm ci
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+    - npm run check:format
+    - npm run biome
+    - npm run oxlint
+    - npm run deadcode
+
+test:
+  stage: test
+  script:
+    - npm run coverage
+
+security:
+  stage: security
+  script:
+    - npm run security
+
+audit:
+  stage: audit
+  script:
+    - npm run audit

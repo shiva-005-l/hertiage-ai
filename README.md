@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HeritageAI: Smart Heritage Guide
 
-## Getting Started
+HeritageAI is a modern, AI-powered platform designed to enhance the experience of visiting heritage sites. It provides interactive tools for monument recognition, historical information, and issue reporting.
 
-First, run the development server:
+## 🚀 Features
+
+- 📸 **Monument Recognition**: Identify heritage sites instantly using AI-powered image recognition.
+- 🤖 **Heritage Chatbot**: Ask questions and get detailed historical information from our smart assistant.
+- 🎙️ **Voice Guide**: Listen to immersive audio tours available in multiple languages.
+- 🚩 **Issue Reporting**: Report maintenance issues or vandalism directly to the authorities.
+- 🌍 **Multi-language Support**: Experience the heritage in your preferred language.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Testing**: [Vitest](https://vitest.dev/)
+- **Linting & Formatting**: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Biome](https://biomejs.dev/)
+- **Security**: [Secretlint](https://github.com/secretlint/secretlint) with a Gitleaks-compatible config file
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Testing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run unit tests:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test
+```
 
-## Learn More
+Generate coverage report:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run coverage
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Quality Tools
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Format code**: `npm run format`
+- **Lint code**: `npm run lint`
+- **Check for dead code**: `npm run deadcode`
+- **Security scan**: `npm run security`
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.

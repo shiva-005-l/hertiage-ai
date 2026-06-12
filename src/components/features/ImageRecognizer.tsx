@@ -1,12 +1,29 @@
-"use client";
+'use client';
 
-import React, { useRef, useState } from 'react';
-import { AlertCircle, Camera, CheckCircle, ImageIcon, Upload, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import {
+  AlertCircle,
+  Camera,
+  CheckCircle,
+  ImageIcon,
+  Upload,
+  X,
+} from 'lucide-react';
+import type React from 'react';
+import { useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { heritageSites, type HeritageSite } from '@/lib/mock-data';
-import { recognizedSiteResult, type MonumentRecognitionResult } from '@/lib/monument-recognition';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { type HeritageSite, heritageSites } from '@/lib/mock-data';
+import {
+  type MonumentRecognitionResult,
+  recognizedSiteResult,
+} from '@/lib/monument-recognition';
 
 type ImageSignature = {
   cells: number[];
@@ -29,7 +46,11 @@ function loadImage(src: string, options: { crossOrigin?: boolean } = {}) {
   });
 }
 
-function drawCover(ctx: CanvasRenderingContext2D, image: HTMLImageElement, size: number) {
+function drawCover(
+  ctx: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  size: number
+) {
   const scale = Math.max(size / image.naturalWidth, size / image.naturalHeight);
   const width = image.naturalWidth * scale;
   const height = image.naturalHeight * scale;
@@ -61,7 +82,8 @@ function buildSignature(image: HTMLImageElement): ImageSignature {
       const r = data[pixel] / 255;
       const g = data[pixel + 1] / 255;
       const b = data[pixel + 2] / 255;
-      const cell = Math.floor(y / cellSide) * GRID_SIZE + Math.floor(x / cellSide);
+      const cell =
+        Math.floor(y / cellSide) * GRID_SIZE + Math.floor(x / cellSide);
 
       cells[cell * 3] += r;
       cells[cell * 3 + 1] += g;
@@ -103,11 +125,14 @@ function buildSignature(image: HTMLImageElement): ImageSignature {
 
 function signatureSimilarity(a: ImageSignature, b: ImageSignature) {
   const cellDistance = Math.sqrt(
-    a.cells.reduce((total, value, index) => total + (value - b.cells[index]) ** 2, 0) / a.cells.length,
+    a.cells.reduce(
+      (total, value, index) => total + (value - b.cells[index]) ** 2,
+      0
+    ) / a.cells.length
   );
   const histogramDistance = a.histogram.reduce(
     (total, value, index) => total + Math.abs(value - b.histogram[index]),
-    0,
+    0
   );
   const edgeDistance = Math.abs(a.edge - b.edge);
 
@@ -134,21 +159,29 @@ function signatureFromSite(site: HeritageSite) {
       site.id,
       loadImage(site.imageUrl, { crossOrigin: true })
         .then(buildSignature)
-        .catch(() => null),
+        .catch(() => null)
     );
   }
 
   return signatureCache.get(site.id)!;
 }
 
-async function recognizeFromReferenceImages(file: File): Promise<MonumentRecognitionResult | null> {
+async function recognizeFromReferenceImages(
+  file: File
+): Promise<MonumentRecognitionResult | null> {
   const uploadedSignature = await signatureFromFile(file);
   const referenceSignatures = await Promise.all(
-    heritageSites.map(async (site) => ({ site, signature: await signatureFromSite(site) })),
+    heritageSites.map(async (site) => ({
+      site,
+      signature: await signatureFromSite(site),
+    }))
   );
 
   const matches = referenceSignatures
-    .filter((entry): entry is { site: HeritageSite; signature: ImageSignature } => Boolean(entry.signature))
+    .filter(
+      (entry): entry is { site: HeritageSite; signature: ImageSignature } =>
+        Boolean(entry.signature)
+    )
     .map(({ site, signature }) => ({
       site,
       score: signatureSimilarity(uploadedSignature, signature),
@@ -158,7 +191,11 @@ async function recognizeFromReferenceImages(file: File): Promise<MonumentRecogni
   const best = matches[0];
   const second = matches[1];
 
-  if (!best || best.score < VISUAL_MATCH_THRESHOLD || (second && best.score - second.score < 0.025)) {
+  if (
+    !best ||
+    best.score < VISUAL_MATCH_THRESHOLD ||
+    (second && best.score - second.score < 0.025)
+  ) {
     return null;
   }
 
@@ -167,7 +204,7 @@ async function recognizeFromReferenceImages(file: File): Promise<MonumentRecogni
     file.name,
     'visual',
     Math.min(0.92, best.score),
-    'Matched against the app monument reference photos.',
+    'Matched against the app monument reference photos.'
   );
 }
 
@@ -200,7 +237,8 @@ export function ImageRecognizer() {
       return;
     }
 
-    if (previewObjectUrlRef.current) URL.revokeObjectURL(previewObjectUrlRef.current);
+    if (previewObjectUrlRef.current)
+      URL.revokeObjectURL(previewObjectUrlRef.current);
     const objectUrl = URL.createObjectURL(file);
     previewObjectUrlRef.current = objectUrl;
     setSelectedFile(file);
@@ -243,14 +281,17 @@ export function ImageRecognizer() {
 
       setResult(payload as MonumentRecognitionResult);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not analyze this photo.');
+      setError(
+        err instanceof Error ? err.message : 'Could not analyze this photo.'
+      );
     } finally {
       setIsUploading(false);
     }
   };
 
   const clearSelection = () => {
-    if (previewObjectUrlRef.current) URL.revokeObjectURL(previewObjectUrlRef.current);
+    if (previewObjectUrlRef.current)
+      URL.revokeObjectURL(previewObjectUrlRef.current);
     previewObjectUrlRef.current = null;
     setSelectedFile(null);
     setResult(null);
@@ -265,9 +306,11 @@ export function ImageRecognizer() {
         <CardTitle className="flex items-center gap-2 text-xl">
           <Camera className="h-5 w-5 text-primary" /> AI Monument Recognition
         </CardTitle>
-        <CardDescription>Upload a photo of a supported monument to identify it.</CardDescription>
+        <CardDescription>
+          Upload a photo of a supported monument to identify it.
+        </CardDescription>
       </CardHeader>
-      
+
       <CardContent className="space-y-6">
         <input
           ref={inputRef}
@@ -277,7 +320,7 @@ export function ImageRecognizer() {
           onChange={handleFileChange}
         />
 
-        <div 
+        <div
           className="border-2 border-dashed border-border/50 rounded-xl p-4 min-h-56 flex flex-col items-center justify-center text-center hover:bg-accent/30 transition-colors cursor-pointer"
           onClick={() => inputRef.current?.click()}
         >
@@ -289,7 +332,11 @@ export function ImageRecognizer() {
           ) : previewUrl ? (
             <div className="w-full space-y-3">
               <div className="relative overflow-hidden rounded-lg border border-border bg-background">
-                <img src={previewUrl} alt="Uploaded monument preview" className="h-44 w-full object-cover" />
+                <img
+                  src={previewUrl}
+                  alt="Uploaded monument preview"
+                  className="h-44 w-full object-cover"
+                />
                 <button
                   type="button"
                   onClick={(event) => {
@@ -304,7 +351,9 @@ export function ImageRecognizer() {
               </div>
               <div className="flex items-center justify-center gap-2 text-xs text-foreground/60">
                 <ImageIcon className="h-4 w-4" />
-                <span className="max-w-[220px] truncate">{selectedFile?.name}</span>
+                <span className="max-w-[220px] truncate">
+                  {selectedFile?.name}
+                </span>
               </div>
             </div>
           ) : result ? (
@@ -318,35 +367,53 @@ export function ImageRecognizer() {
                 <Upload className="h-6 w-6" />
               </div>
               <h3 className="font-medium mb-1">Click to Upload</h3>
-              <p className="text-xs text-foreground/60">Supports JPG, PNG, WebP</p>
+              <p className="text-xs text-foreground/60">
+                Supports JPG, PNG, WebP
+              </p>
             </>
           )}
         </div>
 
-        {error && <p className="text-sm text-destructive text-center">{error}</p>}
+        {error && (
+          <p className="text-sm text-destructive text-center">{error}</p>
+        )}
 
-        <Button className="w-full" onClick={handleAnalyze} disabled={isUploading}>
+        <Button
+          className="w-full"
+          onClick={handleAnalyze}
+          disabled={isUploading}
+        >
           {selectedFile ? 'Analyze Uploaded Photo' : 'Choose Photo to Analyze'}
         </Button>
 
         {result && (
           <div className="bg-accent/40 rounded-xl p-4 border border-border space-y-3 animate-in fade-in slide-in-from-bottom-2">
-            <div className={`flex items-center gap-2 rounded-lg border p-3 ${
-              result.recognized
-                ? 'border-green-500/30 bg-green-500/10 text-green-600'
-                : 'border-yellow-500/30 bg-yellow-500/10 text-yellow-600'
-            }`}>
-              {result.recognized ? <CheckCircle className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
+            <div
+              className={`flex items-center gap-2 rounded-lg border p-3 ${
+                result.recognized
+                  ? 'border-green-500/30 bg-green-500/10 text-green-600'
+                  : 'border-yellow-500/30 bg-yellow-500/10 text-yellow-600'
+              }`}
+            >
+              {result.recognized ? (
+                <CheckCircle className="h-5 w-5" />
+              ) : (
+                <AlertCircle className="h-5 w-5" />
+              )}
               <div className="min-w-0">
                 <p className="text-sm font-bold">
-                  {result.recognized ? 'Monument recognized' : 'Not confidently recognized'}
+                  {result.recognized
+                    ? 'Monument recognized'
+                    : 'Not confidently recognized'}
                 </p>
                 <p className="text-xs text-foreground/60">{result.note}</p>
               </div>
             </div>
             <div className="flex justify-between items-center border-b border-border/50 pb-2">
               <span className="text-sm text-foreground/70">Uploaded</span>
-              <span className="max-w-[180px] truncate text-sm font-medium">{result.uploadedFile}</span>
+              <span className="max-w-[180px] truncate text-sm font-medium">
+                {result.uploadedFile}
+              </span>
             </div>
             {result.recognized && (
               <>
@@ -356,7 +423,9 @@ export function ImageRecognizer() {
                 </div>
                 <div className="flex justify-between items-center border-b border-border/50 pb-2">
                   <span className="text-sm text-foreground/70">Era</span>
-                  <span className="font-medium text-right">{result.historicalEra}</span>
+                  <span className="font-medium text-right">
+                    {result.historicalEra}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center border-b border-border/50 pb-2">
                   <span className="text-sm text-foreground/70">Style</span>
@@ -364,13 +433,21 @@ export function ImageRecognizer() {
                 </div>
                 <div className="flex justify-between items-center border-b border-border/50 pb-2">
                   <span className="text-sm text-foreground/70">Location</span>
-                  <span className="max-w-[180px] text-right text-sm font-medium">{result.location}</span>
+                  <span className="max-w-[180px] text-right text-sm font-medium">
+                    {result.location}
+                  </span>
                 </div>
               </>
             )}
             <div className="flex justify-between items-center pt-1">
               <span className="text-sm text-foreground/70">Confidence</span>
-              <Badge className={result.recognized ? 'bg-green-600 hover:bg-green-600' : 'bg-yellow-600 hover:bg-yellow-600'}>
+              <Badge
+                className={
+                  result.recognized
+                    ? 'bg-green-600 hover:bg-green-600'
+                    : 'bg-yellow-600 hover:bg-yellow-600'
+                }
+              >
                 {result.confidence}
               </Badge>
             </div>

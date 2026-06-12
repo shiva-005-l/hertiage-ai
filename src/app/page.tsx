@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Button } from "@/components/ui/button";
-import { ImageRecognizer } from "@/components/features/ImageRecognizer";
-import { useLanguage } from "@/lib/language";
-import Link from "next/link";
 import {
-  Compass,
-  Bot,
-  MapPin,
-  QrCode,
-  Medal,
-  Users,
-  Mic,
-  Globe,
-  Camera,
-  Zap,
-  Star,
   ArrowRight,
-  Shield,
+  Bot,
+  Camera,
+  Compass,
+  Globe,
   Landmark,
-} from "lucide-react";
+  MapPin,
+  Medal,
+  Mic,
+  QrCode,
+  Shield,
+  Star,
+  Users,
+  Zap,
+} from 'lucide-react';
+import Link from 'next/link';
+import { ImageRecognizer } from '@/components/features/ImageRecognizer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/lib/language';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -72,7 +72,9 @@ export default function Home() {
                   id="try-chatbot-btn"
                   className="h-13 px-8 text-base bg-background/50 backdrop-blur-md border-border/60 gap-2"
                   onClick={() => {
-                    const btn = document.getElementById('chatbot-toggle-btn') as HTMLButtonElement | null;
+                    const btn = document.getElementById(
+                      'chatbot-toggle-btn'
+                    ) as HTMLButtonElement | null;
                     btn?.click();
                   }}
                 >
@@ -86,14 +88,20 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/60 to-primary/20 border-2 border-background -ml-2 first:ml-0" />
+                      <div
+                        key={i}
+                        className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/60 to-primary/20 border-2 border-background -ml-2 first:ml-0"
+                      />
                     ))}
                   </div>
                   <span>12,450+ Explorers</span>
                 </div>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-primary text-primary"
+                    />
                   ))}
                   <span className="ml-1">4.9 rating</span>
                 </div>
@@ -107,13 +115,15 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
               {[
-                { value: "50+", label: "Heritage Sites" },
-                { value: "5", label: "Languages" },
-                { value: "Smart", label: "Photo Matching" },
-                { value: "24/7", label: "Real-Time Data" },
+                { value: '50+', label: 'Heritage Sites' },
+                { value: '5', label: 'Languages' },
+                { value: 'Smart', label: 'Photo Matching' },
+                { value: '24/7', label: 'Real-Time Data' },
               ].map((stat) => (
                 <div key={stat.label} className="space-y-1">
-                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-3xl font-bold text-primary">
+                    {stat.value}
+                  </p>
                   <p className="text-sm text-foreground/60">{stat.label}</p>
                 </div>
               ))}
@@ -131,14 +141,21 @@ export default function Home() {
                 Vision AI Recognition
               </div>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-                Don&apos;t know what you&apos;re looking at?{" "}
+                Don&apos;t know what you&apos;re looking at?{' '}
                 <span className="text-primary">Just snap it.</span>
               </h2>
               <p className="text-lg text-foreground/65 leading-relaxed">
-                Upload a monument photo to identify supported sites, architectural styles, historical eras, and useful visitor context.
+                Upload a monument photo to identify supported sites,
+                architectural styles, historical eras, and useful visitor
+                context.
               </p>
               <div className="space-y-3">
-                {["Identify supported monuments", "Learn the historical era & dynasty", "Get architectural style analysis", "Show confidence honestly"].map((f) => (
+                {[
+                  'Identify supported monuments',
+                  'Learn the historical era & dynasty',
+                  'Get architectural style analysis',
+                  'Show confidence honestly',
+                ].map((f) => (
                   <div key={f} className="flex items-center gap-3 text-sm">
                     <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
                       <Zap className="h-3 w-3 text-primary" />
@@ -162,8 +179,13 @@ export default function Home() {
                 <Zap className="h-4 w-4" />
                 Smart Features
               </div>
-              <h2 className="text-4xl font-bold tracking-tight mb-4">Everything for the Modern Explorer</h2>
-              <p className="text-foreground/60 text-lg">AI-powered tools that make your heritage visits educational, smooth, and unforgettable.</p>
+              <h2 className="text-4xl font-bold tracking-tight mb-4">
+                Everything for the Modern Explorer
+              </h2>
+              <p className="text-foreground/60 text-lg">
+                AI-powered tools that make your heritage visits educational,
+                smooth, and unforgettable.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -212,7 +234,9 @@ export default function Home() {
                 Ready to Explore India&apos;s Heritage?
               </h2>
               <p className="text-foreground/60 text-lg mb-8 leading-relaxed">
-                Join 12,000+ explorers who are discovering history through the lens of AI. Sign up free and start earning your Digital Heritage Passport today.
+                Join 12,000+ explorers who are discovering history through the
+                lens of AI. Sign up free and start earning your Digital Heritage
+                Passport today.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/login">
@@ -248,11 +272,22 @@ export default function Home() {
               <span className="font-semibold">Smart Heritage Guide</span>
             </div>
             <p className="text-foreground/50 text-sm text-center">
-              Built for the Hackathon 2026 · AI-Powered Heritage Tourism Platform
+              Built for the Hackathon 2026 · AI-Powered Heritage Tourism
+              Platform
             </p>
             <div className="flex gap-4 text-sm text-foreground/50">
-              <Link href="/explore" className="hover:text-primary transition-colors">Explore</Link>
-              <Link href="/passport" className="hover:text-primary transition-colors">Passport</Link>
+              <Link
+                href="/explore"
+                className="hover:text-primary transition-colors"
+              >
+                Explore
+              </Link>
+              <Link
+                href="/passport"
+                className="hover:text-primary transition-colors"
+              >
+                Passport
+              </Link>
             </div>
           </div>
         </div>
@@ -283,7 +318,9 @@ function FeatureCard({
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-foreground/65 leading-relaxed text-sm">{description}</p>
+      <p className="text-foreground/65 leading-relaxed text-sm">
+        {description}
+      </p>
     </div>
   );
 }

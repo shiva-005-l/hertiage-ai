@@ -14,12 +14,12 @@ Many tourists and citizens visit historical monuments without access to detailed
 
 Current challenges include:
 
-* Lack of digital heritage information
-* Language barriers for foreign tourists
-* Limited availability of tour guides
-* Poor monument discovery mechanisms
-* No centralized heritage exploration platform
-* Limited citizen engagement in heritage preservation
+- Lack of digital heritage information
+- Language barriers for foreign tourists
+- Limited availability of tour guides
+- Poor monument discovery mechanisms
+- No centralized heritage exploration platform
+- Limited citizen engagement in heritage preservation
 
 ---
 
@@ -27,14 +27,14 @@ Current challenges include:
 
 Develop a full-stack web application that enables users to:
 
-* Discover monuments
-* Explore historical information
-* Navigate using interactive maps
-* Scan QR codes at heritage locations
-* Interact with AI-powered heritage assistants
-* Create personalized travel plans
-* Leave reviews and ratings
-* Save favorite monuments
+- Discover monuments
+- Explore historical information
+- Navigate using interactive maps
+- Scan QR codes at heritage locations
+- Interact with AI-powered heritage assistants
+- Create personalized travel plans
+- Leave reviews and ratings
+- Save favorite monuments
 
 Administrators can manage monuments, users, reviews, and analytics through a dedicated dashboard.
 
@@ -57,32 +57,32 @@ Administrators can manage monuments, users, reviews, and analytics through a ded
 
 Can:
 
-* Browse monuments
-* Search monuments
-* View public information
+- Browse monuments
+- Search monuments
+- View public information
 
 ## Registered Users
 
 Can:
 
-* Register
-* Login
-* Manage profile
-* Save favorites
-* Leave reviews
-* Use AI assistant
-* Use trip planner
-* Earn badges
+- Register
+- Login
+- Manage profile
+- Save favorites
+- Leave reviews
+- Use AI assistant
+- Use trip planner
+- Earn badges
 
 ## Administrators
 
 Can:
 
-* Manage monuments
-* Manage users
-* Moderate reviews
-* View analytics
-* Generate QR codes
+- Manage monuments
+- Manage users
+- Moderate reviews
+- View analytics
+- Generate QR codes
 
 ---
 
@@ -92,27 +92,27 @@ Can:
 
 Features:
 
-* User Registration
-* Login
-* Logout
-* Forgot Password
-* Reset Password
+- User Registration
+- Login
+- Logout
+- Forgot Password
+- Reset Password
 
 Registration Fields:
 
-* Full Name
-* Email
-* Phone Number
-* Country
-* Preferred Language
-* Password
+- Full Name
+- Email
+- Phone Number
+- Country
+- Preferred Language
+- Password
 
 Security:
 
-* JWT Authentication
-* Password Hashing (bcrypt)
-* Protected Routes
-* Role-Based Access Control
+- JWT Authentication
+- Password Hashing (bcrypt)
+- Protected Routes
+- Role-Based Access Control
 
 ---
 
@@ -120,29 +120,29 @@ Security:
 
 Features:
 
-* Browse Monuments
-* Search Monuments
-* Filter Monuments
-* Favorite Monuments
-* Monument Details
+- Browse Monuments
+- Search Monuments
+- Filter Monuments
+- Favorite Monuments
+- Monument Details
 
 Monument Fields:
 
-* Name
-* Description
-* History
-* Architecture Style
-* Construction Year
-* City
-* State
-* Country
-* Latitude
-* Longitude
-* Entry Fee
-* Visiting Hours
-* Images
-* Audio Guide URL
-* QR Code
+- Name
+- Description
+- History
+- Architecture Style
+- Construction Year
+- City
+- State
+- Country
+- Latitude
+- Longitude
+- Entry Fee
+- Visiting Hours
+- Images
+- Audio Guide URL
+- QR Code
 
 ---
 
@@ -150,15 +150,15 @@ Monument Fields:
 
 Displays:
 
-* Monument Images
-* Historical Information
-* Timeline
-* Architecture Details
-* Reviews
-* Ratings
-* Related Monuments
-* Interactive Map
-* AI Assistant
+- Monument Images
+- Historical Information
+- Timeline
+- Architecture Details
+- Reviews
+- Ratings
+- Related Monuments
+- Interactive Map
+- AI Assistant
 
 ---
 
@@ -166,16 +166,16 @@ Displays:
 
 Technology:
 
-* Leaflet
-* OpenStreetMap
+- Leaflet
+- OpenStreetMap
 
 Features:
 
-* Monument Markers
-* User Location
-* Nearby Attractions
-* Route Navigation
-* Distance Calculation
+- Monument Markers
+- User Location
+- Nearby Attractions
+- Route Navigation
+- Distance Calculation
 
 ---
 
@@ -190,9 +190,9 @@ Admin Creates Monument
 
 Features:
 
-* Unique QR per Monument
-* Download QR
-* Dynamic Monument Access
+- Unique QR per Monument
+- Download QR
+- Dynamic Monument Access
 
 ---
 
@@ -200,14 +200,14 @@ Features:
 
 Features:
 
-* Star Ratings
-* User Reviews
-* Photo Reviews
+- Star Ratings
+- User Reviews
+- Photo Reviews
 
 Admin Features:
 
-* Review Moderation
-* Spam Removal
+- Review Moderation
+- Spam Removal
 
 ---
 
@@ -215,21 +215,21 @@ Admin Features:
 
 Powered By:
 
-* OpenAI API
+- OpenAI API
 
 Capabilities:
 
-* Historical Q&A
-* Architecture Explanation
-* Event Explanation
-* Monument Insights
+- Historical Q&A
+- Architecture Explanation
+- Event Explanation
+- Monument Insights
 
 Example Questions:
 
-* Who built this monument?
-* Why was it built?
-* What is special about it?
-* What happened here?
+- Who built this monument?
+- Why was it built?
+- What is special about it?
+- What happened here?
 
 ---
 
@@ -237,15 +237,15 @@ Example Questions:
 
 Inputs:
 
-* Destination City
-* Travel Days
-* Interests
+- Destination City
+- Travel Days
+- Interests
 
 Outputs:
 
-* Personalized Itinerary
-* Recommended Monuments
-* Route Suggestions
+- Personalized Itinerary
+- Recommended Monuments
+- Route Suggestions
 
 ---
 
@@ -253,9 +253,9 @@ Outputs:
 
 Features:
 
-* Save Monuments
-* Remove Favorites
-* Favorites Dashboard
+- Save Monuments
+- Remove Favorites
+- Favorites Dashboard
 
 ---
 
@@ -263,11 +263,11 @@ Features:
 
 Badges:
 
-* First Visit
-* Explorer
-* Heritage Enthusiast
-* Heritage Master
-* Cultural Ambassador
+- First Visit
+- Explorer
+- Heritage Enthusiast
+- Heritage Master
+- Cultural Ambassador
 
 ---
 
@@ -277,28 +277,28 @@ Modules:
 
 ## User Management
 
-* View Users
-* Suspend Users
-* Delete Users
+- View Users
+- Suspend Users
+- Delete Users
 
 ## Monument Management
 
-* Create Monument
-* Update Monument
-* Delete Monument
+- Create Monument
+- Update Monument
+- Delete Monument
 
 ## Review Management
 
-* Approve Reviews
-* Delete Reviews
+- Approve Reviews
+- Delete Reviews
 
 ## Analytics
 
-* Total Users
-* Total Visits
-* Total Reviews
-* Most Popular Monument
-* User Activity Trends
+- Total Users
+- Total Visits
+- Total Reviews
+- Most Popular Monument
+- User Activity Trends
 
 ---
 
@@ -306,47 +306,47 @@ Modules:
 
 ## Frontend
 
-* React.js
-* Vite
-* Tailwind CSS
-* React Router
-* Axios
-* Framer Motion
-* React Icons
+- React.js
+- Vite
+- Tailwind CSS
+- React Router
+- Axios
+- Framer Motion
+- React Icons
 
 ## Backend
 
-* Node.js
-* Express.js
+- Node.js
+- Express.js
 
 ## Database
 
-* MongoDB Atlas
-* Mongoose
+- MongoDB Atlas
+- Mongoose
 
 ## Authentication
 
-* JWT
-* bcrypt
+- JWT
+- bcrypt
 
 ## Maps
 
-* Leaflet
-* OpenStreetMap
+- Leaflet
+- OpenStreetMap
 
 ## AI
 
-* OpenAI API
+- OpenAI API
 
 ## File Storage
 
-* Cloudinary
+- Cloudinary
 
 ## Deployment
 
-* Vercel
-* Render
-* MongoDB Atlas
+- Vercel
+- Render
+- MongoDB Atlas
 
 ---
 
@@ -354,74 +354,74 @@ Modules:
 
 ## Users
 
-* id
-* name
-* email
-* phone
-* password
-* role
-* country
-* language
+- id
+- name
+- email
+- phone
+- password
+- role
+- country
+- language
 
 ## Monuments
 
-* id
-* name
-* description
-* history
-* latitude
-* longitude
-* images
+- id
+- name
+- description
+- history
+- latitude
+- longitude
+- images
 
 ## Reviews
 
-* id
-* userId
-* monumentId
-* rating
-* comment
+- id
+- userId
+- monumentId
+- rating
+- comment
 
 ## Favorites
 
-* id
-* userId
-* monumentId
+- id
+- userId
+- monumentId
 
 ## Visits
 
-* id
-* userId
-* monumentId
-* visitDate
+- id
+- userId
+- monumentId
+- visitDate
 
 ## Badges
 
-* id
-* userId
-* badgeName
+- id
+- userId
+- badgeName
 
 ---
 
 # Non-Functional Requirements
 
-* Mobile Responsive
-* Fast Performance
-* Secure Authentication
-* Scalable Architecture
-* Accessible UI
-* Production Ready
-* Error Handling
-* API Validation
-* Environment Variables
-* Reusable Components
+- Mobile Responsive
+- Fast Performance
+- Secure Authentication
+- Scalable Architecture
+- Accessible UI
+- Production Ready
+- Error Handling
+- API Validation
+- Environment Variables
+- Reusable Components
 
 ---
 
 # Success Criteria
 
-* Users can discover and learn about monuments.
-* Admins can manage monument content.
-* AI assistant provides useful heritage information.
-* Interactive maps improve monument navigation.
-* QR system enables seamless monument access.
-* Platform supports real-world tourism and heritage education.
+- Users can discover and learn about monuments.
+- Admins can manage monument content.
+- AI assistant provides useful heritage information.
+- Interactive maps improve monument navigation.
+- QR system enables seamless monument access.
+- Platform supports real-world tourism and heritage education.

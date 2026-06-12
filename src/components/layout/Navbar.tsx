@@ -1,19 +1,49 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from 'react';
+import {
+  BookOpen,
+  Compass,
+  Landmark,
+  LifeBuoy,
+  LogIn,
+  Menu,
+  Shield,
+  User,
+  X,
+} from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Landmark, Compass, User, Menu, Shield, X, BookOpen, LifeBuoy, LogIn } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from 'react';
 import { LanguageSelector } from '@/components/features/LanguageSelector';
-import { useLanguage } from '@/lib/language';
+import { Button } from '@/components/ui/button';
 import { readAuthSession } from '@/lib/auth';
+import { useLanguage } from '@/lib/language';
 
 const navLinks = [
-  { href: '/explore', labelKey: 'nav.explore', icon: <Compass className="h-4 w-4" />, subtle: false },
-  { href: '/passport', labelKey: 'nav.passport', icon: <BookOpen className="h-4 w-4" />, subtle: false },
-  { href: '/assistance', labelKey: 'nav.assistance', icon: <LifeBuoy className="h-4 w-4" />, subtle: false },
-  { href: '/admin', labelKey: 'nav.admin', icon: <Shield className="h-3.5 w-3.5" />, subtle: true },
+  {
+    href: '/explore',
+    labelKey: 'nav.explore',
+    icon: <Compass className="h-4 w-4" />,
+    subtle: false,
+  },
+  {
+    href: '/passport',
+    labelKey: 'nav.passport',
+    icon: <BookOpen className="h-4 w-4" />,
+    subtle: false,
+  },
+  {
+    href: '/assistance',
+    labelKey: 'nav.assistance',
+    icon: <LifeBuoy className="h-4 w-4" />,
+    subtle: false,
+  },
+  {
+    href: '/admin',
+    labelKey: 'nav.admin',
+    icon: <Shield className="h-3.5 w-3.5" />,
+    subtle: true,
+  },
 ] as const;
 
 export function Navbar() {
@@ -21,7 +51,9 @@ export function Navbar() {
   const [isAdmin, setIsAdmin] = useState(false);
   const pathname = usePathname();
   const { t } = useLanguage();
-  const visibleNavLinks = navLinks.filter((link) => link.href !== '/admin' || isAdmin);
+  const visibleNavLinks = navLinks.filter(
+    (link) => link.href !== '/admin' || isAdmin
+  );
 
   useEffect(() => {
     const loadAuth = () => {
@@ -64,8 +96,8 @@ export function Navbar() {
                   isActive
                     ? 'bg-primary/15 text-primary font-semibold'
                     : link.subtle
-                    ? 'text-foreground/40 hover:text-foreground/70 hover:bg-accent/50'
-                    : 'text-foreground/70 hover:text-foreground hover:bg-accent/50'
+                      ? 'text-foreground/40 hover:text-foreground/70 hover:bg-accent/50'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-accent/50'
                 }`}
               >
                 {link.icon}
@@ -80,12 +112,19 @@ export function Navbar() {
           <LanguageSelector />
           <div className="hidden md:flex items-center gap-2">
             <Link href="/login">
-              <Button variant="ghost" size="sm" className="gap-2 text-foreground/70 hover:text-foreground">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 text-foreground/70 hover:text-foreground"
+              >
                 <LogIn className="h-4 w-4" /> {t('nav.login')}
               </Button>
             </Link>
             <Link href="/login">
-              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
+              <Button
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+              >
                 <User className="h-4 w-4 mr-1.5" /> {t('nav.getStarted')}
               </Button>
             </Link>
@@ -98,7 +137,11 @@ export function Navbar() {
             className="md:hidden"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
           >
-            {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </div>
@@ -119,21 +162,32 @@ export function Navbar() {
                     isActive
                       ? 'bg-primary/15 text-primary'
                       : 'text-foreground/70 hover:bg-accent/50 hover:text-foreground'
-                }`}
-              >
-                {link.icon}
+                  }`}
+                >
+                  {link.icon}
                   {t(link.labelKey)}
                 </Link>
               );
             })}
             <div className="pt-2 border-t border-border/30 flex gap-2">
-              <Link href="/login" className="flex-1" onClick={() => setIsMobileOpen(false)}>
+              <Link
+                href="/login"
+                className="flex-1"
+                onClick={() => setIsMobileOpen(false)}
+              >
                 <Button variant="outline" size="sm" className="w-full gap-2">
                   <LogIn className="h-4 w-4" /> {t('nav.login')}
                 </Button>
               </Link>
-              <Link href="/login" className="flex-1" onClick={() => setIsMobileOpen(false)}>
-                <Button size="sm" className="w-full bg-primary text-primary-foreground">
+              <Link
+                href="/login"
+                className="flex-1"
+                onClick={() => setIsMobileOpen(false)}
+              >
+                <Button
+                  size="sm"
+                  className="w-full bg-primary text-primary-foreground"
+                >
                   {t('nav.getStarted')}
                 </Button>
               </Link>
