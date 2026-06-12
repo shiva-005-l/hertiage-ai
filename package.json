@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "check:format": "prettier --check .",
     "biome": "biome check .",

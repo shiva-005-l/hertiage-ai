@@ -1,5 +1,6 @@
 stages:
   - lint
+  - type-check
   - test
   - security
   - audit
@@ -22,12 +23,31 @@ lint:
     - npm run oxlint
     - npm run deadcode
 
+prettier:
+  stage: lint
+  script:
+    - npm run check:format
+
+type-check:
+  stage: type-check
+  script:
+    - npm run type-check
+
 test:
   stage: test
   script:
     - npm run coverage
 
-security:
+gitleaks:
+  stage: security
+  image: 
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  before_script: []
+  script:
+    - gitleaks detect --source . -v
+
+secretlint:
   stage: security
   script:
     - npm run security
