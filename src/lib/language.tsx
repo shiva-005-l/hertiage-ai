@@ -220,6 +220,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = language;
+    
+    const syncGoogleTranslate = () => {
+      const selectField = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+      if (selectField && selectField.value !== language) {
+        selectField.value = language;
+        selectField.dispatchEvent(new Event('change'));
+      }
+    };
+
+    syncGoogleTranslate();
+    const t1 = setTimeout(syncGoogleTranslate, 1000);
+    const t2 = setTimeout(syncGoogleTranslate, 3000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [language]);
 
   const setLanguage = (nextLanguage: LanguageCode) => {

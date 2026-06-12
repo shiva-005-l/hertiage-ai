@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Chatbot } from '@/components/features/Chatbot';
 import { LanguageProvider } from '@/lib/language';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,9 +33,28 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
+          {/* Hidden Google Translate Widget Element */}
+          <div id="google_translate_element" style={{ display: 'none' }}></div>
           {children}
           <Chatbot />
         </LanguageProvider>
+
+        {/* Google Translate Integration Scripts */}
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              new window.google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi,ta,kn',
+                autoDisplay: false
+              }, 'google_translate_element');
+            }
+          `}
+        </Script>
       </body>
     </html>
   );

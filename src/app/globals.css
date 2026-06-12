@@ -177,3 +177,13 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ── Google Translate Widget Overrides ── */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0 !important; }
+#google_translate_element { display: none !important; }
+.skiptranslate iframe { display: none !important; }
+#goog-gt-tt { display: none !important; }
+.goog-tooltip { display: none !important; }
+.goog-tooltip:hover { display: none !important; }
+.goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }

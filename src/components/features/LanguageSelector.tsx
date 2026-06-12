@@ -33,6 +33,13 @@ export function LanguageSelector() {
                 onClick={() => {
                   setLanguage(lang.code);
                   setIsOpen(false);
+                  
+                  // Trigger hidden Google Translate Widget
+                  const selectField = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+                  if (selectField) {
+                    selectField.value = lang.code;
+                    selectField.dispatchEvent(new Event('change'));
+                  }
                 }}
               >
                 {lang.name}
