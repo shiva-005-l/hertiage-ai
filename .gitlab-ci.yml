@@ -1,9 +1,10 @@
 stages:
+  - audit
   - lint
-  - type-check
+  - format
+  - type_check
   - test
   - security
-  - audit
 
 cache:
   paths:
@@ -14,6 +15,11 @@ default:
   before_script:
     - npm ci
 
+dependency_audit:
+  stage: audit
+  script:
+    - npm audit
+
 lint:
   stage: lint
   script:
@@ -23,20 +29,26 @@ lint:
     - npm run oxlint
     - npm run deadcode
 
-prettier:
-  stage: lint
+format:
+  stage: format
   script:
     - npm run check:format
 
-type-check:
-  stage: type-check
+type_check:
+  stage: type_check
   script:
     - npm run type-check
 
 test:
   stage: test
   script:
+    - npm run test:ci
     - npm run coverage
+
+secret_scanning:
+  stage: security
+  script:
+    - npm run security
 
 gitleaks:
   stage: security
@@ -46,13 +58,3 @@ gitleaks:
   before_script: []
   script:
     - gitleaks detect --source . -v
-
-secretlint:
-  stage: security
-  script:
-    - npm run security
-
-audit:
-  stage: audit
-  script:
-    - npm run audit
