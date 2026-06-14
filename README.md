@@ -113,18 +113,16 @@ Heritage Information Database
 
 # 🛠️ Technology Stack
 
-| Category      | Technology   |
-| ------------- | ------------ |
-| Framework     | Next.js 16   |
-| Language      | TypeScript   |
-| Styling       | Tailwind CSS |
-| UI Components | React        |
-| Testing       | Vitest       |
-| Linting       | ESLint       |
-| Formatting    | Prettier     |
-| Code Quality  | Biome        |
-| Security      | Secretlint   |
-| Deployment    | Vercel       |
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) with PostCSS
+- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
+- **UI Components**: [Lucide React](https://lucide.dev/) for icons
+- **Testing**: [Vitest](https://vitest.dev/) with JSDOM and Coverage-v8
+- **Linting & Formatting**: [ESLint 9](https://eslint.org/), [Prettier 3](https://prettier.io/), [Biome 2](https://biomejs.dev/)
+- **Security**: [Secretlint](https://github.com/secretlint/secretlint) & [Gitleaks](https://github.com/gitleaks/gitleaks)
+- **Code Quality**: [Knip](https://knip.dev/) for dead code detection, [Oxlint](https://oxlint.js.org/) for performance
+- **Workflow**: [Husky](https://typicode.github.io/husky/) & [Lint-staged](https://github.com/okonet/lint-staged) for pre-commit hooks
+- **Release**: [Git-cliff](https://git-cliff.org/) for automated changelogs
 
 ---
 
