@@ -12,6 +12,8 @@ cache:
 
 default:
   image: node:20
+  tags:
+    - smart-heritage-node20
   before_script:
     - npm ci
 
