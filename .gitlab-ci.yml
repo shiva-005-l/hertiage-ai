@@ -6,7 +6,7 @@ stages:
   - test
   - security
 
-cache:
+cache: 
   paths:
     - node_modules/
 
