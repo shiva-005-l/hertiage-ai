@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 import { Chatbot } from '@/components/features/Chatbot';
 import { LanguageProvider } from '@/lib/language';
-import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
