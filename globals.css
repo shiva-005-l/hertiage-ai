@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -74,7 +74,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -94,7 +96,9 @@ body {
 
 /* ── Gold glow effect ── */
 .glow-gold {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 0 60px rgba(212, 175, 55, 0.1);
+  box-shadow:
+    0 0 30px rgba(212, 175, 55, 0.2),
+    0 0 60px rgba(212, 175, 55, 0.1);
 }
 
 /* ── Gradient text ── */
@@ -123,8 +127,12 @@ body {
 
 /* ── Animations ── */
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .shimmer {
@@ -139,8 +147,13 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .float {
@@ -148,9 +161,15 @@ body {
 }
 
 /* ── Crowd level colors ── */
-.crowd-high { color: #ef4444; }
-.crowd-medium { color: #f59e0b; }
-.crowd-low { color: #22c55e; }
+.crowd-high {
+  color: #ef4444;
+}
+.crowd-medium {
+  color: #f59e0b;
+}
+.crowd-low {
+  color: #22c55e;
+}
 
 /* ── Focus styles ── */
 :focus-visible {
@@ -160,11 +179,29 @@ body {
 }
 
 /* ── Google Translate Widget Overrides ── */
-.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; }
-#google_translate_element { display: none !important; }
-.skiptranslate iframe { display: none !important; }
-#goog-gt-tt { display: none !important; }
-.goog-tooltip { display: none !important; }
-.goog-tooltip:hover { display: none !important; }
-.goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+.goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+#google_translate_element {
+  display: none !important;
+}
+.skiptranslate iframe {
+  display: none !important;
+}
+#goog-gt-tt {
+  display: none !important;
+}
+.goog-tooltip {
+  display: none !important;
+}
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -6,7 +6,7 @@ stages:
   - test
   - security
 
-cache: 
+cache:
   paths:
     - node_modules/
 
@@ -54,9 +54,9 @@ secret_scanning:
 
 gitleaks:
   stage: security
-  image: 
+  image:
     name: zricethezav/gitleaks:latest
-    entrypoint: [""]
+    entrypoint: ['']
   before_script: []
   script:
     - gitleaks detect --source . -v

@@ -10,11 +10,11 @@
 
 Many heritage sites lack interactive digital assistance, multilingual accessibility, and efficient maintenance reporting systems. HeritageAI addresses these challenges by providing:
 
-* AI-based monument recognition
-* Historical information through an intelligent chatbot
-* Multilingual voice-guided tours
-* Community issue reporting system
-* Accessible heritage exploration for tourists and students
+- AI-based monument recognition
+- Historical information through an intelligent chatbot
+- Multilingual voice-guided tours
+- Community issue reporting system
+- Accessible heritage exploration for tourists and students
 
 The platform aims to preserve cultural heritage while improving visitor engagement through modern technology.
 
@@ -26,10 +26,10 @@ The platform aims to preserve cultural heritage while improving visitor engageme
 
 Upload or capture an image of a monument and receive:
 
-* Monument identification
-* Historical significance
-* Architectural details
-* Cultural importance
+- Monument identification
+- Historical significance
+- Architectural details
+- Cultural importance
 
 ---
 
@@ -37,16 +37,16 @@ Upload or capture an image of a monument and receive:
 
 Interact with an AI assistant to:
 
-* Ask historical questions
-* Learn monument facts
-* Explore cultural stories
-* Receive contextual information instantly
+- Ask historical questions
+- Learn monument facts
+- Explore cultural stories
+- Receive contextual information instantly
 
 Example Questions:
 
-* "Who built Charminar?"
-* "What is the history of Golconda Fort?"
-* "Why is Hampi a UNESCO World Heritage Site?"
+- "Who built Charminar?"
+- "What is the history of Golconda Fort?"
+- "Why is Hampi a UNESCO World Heritage Site?"
 
 ---
 
@@ -56,16 +56,16 @@ Listen to heritage information through voice narration.
 
 Supported Languages:
 
-* English
-* Telugu
-* Hindi
-* Tamil
+- English
+- Telugu
+- Hindi
+- Tamil
 
 Benefits:
 
-* Hands-free exploration
-* Improved accessibility
-* Better visitor engagement
+- Hands-free exploration
+- Improved accessibility
+- Better visitor engagement
 
 ---
 
@@ -73,11 +73,11 @@ Benefits:
 
 Visitors can report:
 
-* Damaged structures
-* Cleanliness issues
-* Missing signboards
-* Vandalism
-* Safety concerns
+- Damaged structures
+- Cleanliness issues
+- Missing signboards
+- Vandalism
+- Safety concerns
 
 This helps authorities maintain heritage sites effectively.
 
@@ -157,8 +157,8 @@ heritageai/
 
 ## Prerequisites
 
-* Node.js 20+
-* npm or yarn
+- Node.js 20+
+- npm or yarn
 
 ---
 
@@ -256,33 +256,33 @@ npm run security
 
 ### For Tourists
 
-* Discover monument history
-* Access multilingual guides
-* Explore heritage interactively
+- Discover monument history
+- Access multilingual guides
+- Explore heritage interactively
 
 ### For Students
 
-* Learn historical facts
-* Conduct educational research
-* Access AI-powered explanations
+- Learn historical facts
+- Conduct educational research
+- Access AI-powered explanations
 
 ### For Heritage Authorities
 
-* Receive issue reports
-* Improve site maintenance
-* Increase visitor engagement
+- Receive issue reports
+- Improve site maintenance
+- Increase visitor engagement
 
 ---
 
 # 🌟 Future Enhancements
 
-* AR-based monument visualization
-* Real-time navigation inside heritage sites
-* Offline voice guides
-* QR code monument scanning
-* AI-generated personalized heritage tours
-* UNESCO heritage integration
-* Mobile application support
+- AR-based monument visualization
+- Real-time navigation inside heritage sites
+- Offline voice guides
+- QR code monument scanning
+- AI-generated personalized heritage tours
+- UNESCO heritage integration
+- Mobile application support
 
 ---
 
@@ -290,11 +290,11 @@ npm run security
 
 HeritageAI demonstrates how Artificial Intelligence can be used to:
 
-* Preserve cultural heritage
-* Improve tourism experiences
-* Increase accessibility
-* Encourage citizen participation
-* Support digital transformation of heritage management
+- Preserve cultural heritage
+- Improve tourism experiences
+- Increase accessibility
+- Encourage citizen participation
+- Support digital transformation of heritage management
 
 ---
 
@@ -328,7 +328,7 @@ Developed for innovation in cultural heritage preservation and digital tourism.
 
 ## 🔗 Links
 
-* Live Demo: https://smart-heritage-demo-t1gm.vercel.app
-* Repository: https://code.swecha.org/lshiva21/heritageai-smart-heritage-guide
+- Live Demo: https://smart-heritage-demo-t1gm.vercel.app
+- Repository: https://code.swecha.org/lshiva21/heritageai-smart-heritage-guide
 
 ⭐ If you like this project, consider giving it a star!

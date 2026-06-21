@@ -220,9 +220,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    
+
     const syncGoogleTranslate = () => {
-      const selectField = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+      const selectField = document.querySelector(
+        '.goog-te-combo'
+      ) as HTMLSelectElement | null;
       if (selectField && selectField.value !== language) {
         selectField.value = language;
         selectField.dispatchEvent(new Event('change'));
