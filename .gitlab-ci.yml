@@ -8,18 +8,21 @@ stages:
 
 variables:
   HUSKY: "0"
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
 
 cache:
+  key:
+    files:
+      - frontend/package-lock.json
   paths:
-    - node_modules/
-    - frontend/node_modules/
+    - .npm/_cacache/
 
 default:
   image: node:20
   tags:
     - smart-heritage-node20
   before_script:
-    - npm --prefix frontend ci --no-audit
+    - npm --prefix frontend ci --no-audit --prefer-offline
 
 dependency_audit:
   stage: audit
