@@ -3,8 +3,8 @@
 ## Architecture
 
 - Next.js App Router provides pages and API routes.
-- Shared heritage data lives in `src/lib/mock-data.ts`.
-- Recognition helpers live in `src/lib/monument-recognition.ts`.
+- Shared heritage data lives in `frontend/src/services/mock-data.ts`.
+- Recognition helpers live in `frontend/src/services/monument-recognition.ts`.
 - Feature UI components live under `src/components/features`.
 
 ## Tooling
