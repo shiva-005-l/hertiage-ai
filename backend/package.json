@@ -1,0 +1,12 @@
+{
+  "name": "@heritageai/backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone backend service for HeritageAI demo APIs.",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "license": "AGPL-3.0-only"
+}
