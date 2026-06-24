@@ -9,18 +9,19 @@ stages:
 cache:
   paths:
     - node_modules/
+    - frontend/node_modules/
 
 default:
   image: node:20
   tags:
     - smart-heritage-node20
   before_script:
-    - npm ci
+    - npm --prefix frontend ci
 
 dependency_audit:
   stage: audit
   script:
-    - npm audit
+    - npm --prefix frontend audit
 
 lint:
   stage: lint

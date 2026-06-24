@@ -1,66 +1,29 @@
 {
-  "name": "heritage-ai",
+  "name": "heritageai-smart-heritage-guide",
   "version": "0.1.0",
   "private": true,
+  "description": "Monorepo wrapper for the HeritageAI smart heritage guide demo.",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
-    "lint-staged": "lint-staged",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "check:format": "prettier --check .",
-    "biome": "biome check .",
-    "oxlint": "oxlint .",
-    "deadcode": "knip",
-    "test": "vitest",
-    "test:ci": "vitest run",
-    "coverage": "vitest run --coverage",
-    "audit": "npm audit --audit-level=moderate",
-    "security": "secretlint \"src/**/*\" \"specs/**/*\" \"docs/**/*\" \"*.{json,md,mjs,ts,yml,yaml}\" \".github/**/*\" \".specify/**/*\"",
-    "changelog": "git-cliff -o CHANGELOG.md",
-    "prepare": "husky install"
+    "dev": "npm run frontend:dev",
+    "build": "npm run frontend:build",
+    "start": "npm run frontend:start",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:start": "npm --prefix frontend run start",
+    "frontend:lint": "npm --prefix frontend run lint",
+    "frontend:test": "npm --prefix frontend run test",
+    "backend:dev": "npm --prefix backend run dev",
+    "backend:start": "npm --prefix backend run start",
+    "lint": "npm run frontend:lint",
+    "type-check": "npm --prefix frontend run type-check",
+    "test": "npm --prefix frontend run test",
+    "test:ci": "npm --prefix frontend run test:ci",
+    "coverage": "npm --prefix frontend run coverage",
+    "security": "npm --prefix frontend run security"
   },
-  "dependencies": {
-    "clsx": "^2.1.1",
-    "lucide-react": "^1.17.0",
-    "next": "16.2.9",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwind-merge": "^3.6.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.16",
-    "@secretlint/secretlint-rule-preset-recommend": "^11.2.4",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^5.1.2",
-    "@vitest/coverage-v8": "^4.1.8",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.9",
-    "git-cliff": "^2.13.1",
-    "husky": "^8.0.0",
-    "jsdom": "^27.3.0",
-    "knip": "^6.16.1",
-    "lint-staged": "^16.2.7",
-    "oxlint": "^1.69.0",
-    "prettier": "^3.0.0",
-    "secretlint": "^11.2.4",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "vitest": "^4.1.8"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
-  "overrides": {
-    "postcss": "^8.5.10"
-  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "license": "AGPL-3.0-only"
 }
