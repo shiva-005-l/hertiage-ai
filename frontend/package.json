@@ -20,7 +20,7 @@
     "audit": "npm audit --audit-level=moderate",
     "security": "secretlint \"src/**/*\" \"../tests/**/*\" \"../specs/**/*\" \"../docs/**/*\" \"*.{json,md,mjs,ts,yml,yaml}\" \"../*.{json,md,mjs,ts,yml,yaml}\" \"../.github/**/*\" \"../.specify/**/*\"",
     "changelog": "git-cliff -o CHANGELOG.md",
-    "prepare": "husky install ../.husky"
+    "prepare": "cd .. && husky install .husky"
   },
   "dependencies": {
     "clsx": "^2.1.1",

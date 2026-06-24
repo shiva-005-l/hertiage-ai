@@ -15,6 +15,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/hooks/language';
 import {
   type DemoUser,
   readAuthSession,
@@ -26,7 +27,6 @@ import {
   readComplaints,
   updateComplaintStatus,
 } from '@/services/complaints';
-import { useLanguage } from '@/hooks/language';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<

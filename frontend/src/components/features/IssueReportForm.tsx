@@ -11,8 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { addComplaint } from '@/services/complaints';
 import { useLanguage } from '@/hooks/language';
+import { addComplaint } from '@/services/complaints';
 
 export function IssueReportForm() {
   const [complaintStatus, setComplaintStatus] = useState<

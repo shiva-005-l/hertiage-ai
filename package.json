@@ -15,11 +15,16 @@
     "backend:dev": "npm --prefix backend run dev",
     "backend:start": "npm --prefix backend run start",
     "lint": "npm run frontend:lint",
+    "format": "npm --prefix frontend run format",
+    "check:format": "npm --prefix frontend run check:format",
+    "biome": "npm --prefix frontend run biome",
+    "oxlint": "npm --prefix frontend run oxlint",
+    "deadcode": "npm --prefix frontend run deadcode",
     "type-check": "npm --prefix frontend run type-check",
     "test": "npm --prefix frontend run test",
     "test:ci": "npm --prefix frontend run test:ci",
     "coverage": "npm --prefix frontend run coverage",
-    "security": "npm --prefix frontend run security"
+    "security": "npm --prefix frontend exec secretlint -- \"frontend/src/**/*\" \"tests/**/*\" \"specs/**/*\" \"docs/**/*\" \"frontend/*.{json,md,mjs,ts,yml,yaml}\" \"*.{json,md,mjs,ts,yml,yaml}\" \".github/**/*\" \".specify/**/*\""
   },
   "workspaces": [
     "frontend",

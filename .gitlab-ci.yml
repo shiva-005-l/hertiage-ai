@@ -16,7 +16,7 @@ default:
   tags:
     - smart-heritage-node20
   before_script:
-    - npm --prefix frontend ci
+    - HUSKY=0 npm --prefix frontend ci --no-audit
 
 dependency_audit:
   stage: audit
