@@ -6,6 +6,9 @@ stages:
   - test
   - security
 
+variables:
+  HUSKY: "0"
+
 cache:
   paths:
     - node_modules/
@@ -16,7 +19,7 @@ default:
   tags:
     - smart-heritage-node20
   before_script:
-    - HUSKY=0 npm --prefix frontend ci --no-audit
+    - npm --prefix frontend ci --no-audit
 
 dependency_audit:
   stage: audit
