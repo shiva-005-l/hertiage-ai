@@ -1,334 +1,96 @@
-# 🏛️ HeritageAI – Smart Heritage Guide
+# HeritageAI Smart Heritage Guide
 
-**HeritageAI** is an AI-powered digital heritage platform that enhances the experience of exploring historical monuments and cultural sites. The application combines Artificial Intelligence, multilingual support, voice assistance, and community-driven issue reporting to create an interactive and accessible heritage tourism ecosystem.
+HeritageAI is an AI-assisted cultural heritage demo that helps visitors explore monuments, ask historical questions, listen to multilingual voice guides, recognize monuments from images, and report site issues.
 
-🌐 **Live Demo:** https://smart-heritage-demo-t1gm.vercel.app
+## Tech Stack
 
----
+- Frontend: Next.js 16, React 19, TypeScript, Tailwind CSS 4
+- Backend: Node.js HTTP service with controller, route, service, model, config, and utility layers
+- Testing: Vitest with JSDOM and coverage-v8
+- Quality: ESLint, Prettier, Biome, Oxlint, Knip, Secretlint
+- AI integrations: Gemini Vision-ready monument recognition, LLM-ready chatbot architecture
 
-## 📖 Overview
-
-Many heritage sites lack interactive digital assistance, multilingual accessibility, and efficient maintenance reporting systems. HeritageAI addresses these challenges by providing:
-
-- AI-based monument recognition
-- Historical information through an intelligent chatbot
-- Multilingual voice-guided tours
-- Community issue reporting system
-- Accessible heritage exploration for tourists and students
-
-The platform aims to preserve cultural heritage while improving visitor engagement through modern technology.
-
----
-
-# ✨ Key Features
-
-## 📸 AI Monument Recognition
-
-Upload or capture an image of a monument and receive:
-
-- Monument identification
-- Historical significance
-- Architectural details
-- Cultural importance
-
----
-
-## 🤖 Heritage Chatbot
-
-Interact with an AI assistant to:
-
-- Ask historical questions
-- Learn monument facts
-- Explore cultural stories
-- Receive contextual information instantly
-
-Example Questions:
-
-- "Who built Charminar?"
-- "What is the history of Golconda Fort?"
-- "Why is Hampi a UNESCO World Heritage Site?"
-
----
-
-## 🎙️ Multilingual Voice Guide
-
-Listen to heritage information through voice narration.
-
-Supported Languages:
-
-- English
-- Telugu
-- Hindi
-- Tamil
-
-Benefits:
-
-- Hands-free exploration
-- Improved accessibility
-- Better visitor engagement
-
----
-
-## 🚩 Issue Reporting System
-
-Visitors can report:
-
-- Damaged structures
-- Cleanliness issues
-- Missing signboards
-- Vandalism
-- Safety concerns
-
-This helps authorities maintain heritage sites effectively.
-
----
-
-## 🌍 Multi-Language Support
-
-HeritageAI promotes inclusivity by supporting multiple Indian languages, making cultural knowledge accessible to a wider audience.
-
----
-
-# 🏗️ System Architecture
+## Folder Structure
 
 ```text
-User
- │
- ▼
-Next.js Frontend
- │
- ├── AI Monument Recognition
- ├── Heritage Chatbot
- ├── Voice Guide
- └── Issue Reporting
- │
- ▼
-Backend Services / APIs
- │
- ▼
-Heritage Information Database
-```
-
----
-
-# 🛠️ Technology Stack
-
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) with PostCSS
-- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
-- **UI Components**: [Lucide React](https://lucide.dev/) for icons
-- **Testing**: [Vitest](https://vitest.dev/) with JSDOM and Coverage-v8
-- **Linting & Formatting**: [ESLint 9](https://eslint.org/), [Prettier 3](https://prettier.io/), [Biome 2](https://biomejs.dev/)
-- **Security**: [Secretlint](https://github.com/secretlint/secretlint) & [Gitleaks](https://github.com/gitleaks/gitleaks)
-- **Code Quality**: [Knip](https://knip.dev/) for dead code detection, [Oxlint](https://oxlint.js.org/) for performance
-- **Workflow**: [Husky](https://typicode.github.io/husky/) & [Lint-staged](https://github.com/okonet/lint-staged) for pre-commit hooks
-- **Release**: [Git-cliff](https://git-cliff.org/) for automated changelogs
-
----
-
-# 📂 Project Structure
-
-```text
-heritageai/
-│
-├── app/
-│   ├── explore/
-│   ├── chatbot/
-│   ├── voice-guide/
-│   └── report/
-│
-├── components/
-│
-├── public/
-│
-├── styles/
-│
-├── tests/
-│
-├── .env.example
-├── package.json
-├── next.config.js
+heritageai-smart-heritage-guide/
+├── frontend/                  # Next.js application
+│   ├── src/
+│   │   ├── app/               # Next App Router pages, layouts, API adapters
+│   │   ├── assets/            # Frontend-only static source assets
+│   │   ├── components/        # Reusable UI, layout, and feature components
+│   │   ├── hooks/             # React hooks and providers
+│   │   ├── pages/             # Reserved for page-level abstractions
+│   │   ├── services/          # Frontend services, data fixtures, API helpers
+│   │   ├── styles/            # Shared style modules
+│   │   └── utils/             # Utility helpers
+│   ├── public/                # Public static files
+│   ├── package.json
+│   └── README.md
+├── backend/                   # Standalone Node backend
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── server.js
+│   ├── package.json
+│   ├── .env.example
+│   └── README.md
+├── database/                  # Schemas, migrations, and seed notes
+├── ai-models/                 # Future AI/ML assets
+├── docs/                      # Architecture and project documentation
+├── tests/                     # Frontend and backend tests
+├── package.json               # Root convenience scripts
 └── README.md
 ```
 
----
-
-# 🚀 Installation
-
-## Prerequisites
-
-- Node.js 20+
-- npm or yarn
-
----
-
-## Clone Repository
+## Environment Setup
 
 ```bash
-git clone https://code.swecha.org/lshiva21/heritageai-smart-heritage-guide.git
+cp frontend/.env.example frontend/.env.local
+cp backend/.env.example backend/.env
 ```
+
+Fill in optional AI keys such as `GEMINI_API_KEY` when testing live monument recognition. Without an API key, the frontend keeps its demo fallback behavior.
+
+## Run Frontend
 
 ```bash
-cd heritageai-smart-heritage-guide
+npm --prefix frontend install
+npm --prefix frontend run dev
 ```
 
----
+Open `http://localhost:3000`.
 
-## Install Dependencies
+Root shortcut:
 
 ```bash
-npm install
+npm run frontend:dev
 ```
 
----
-
-## Configure Environment Variables
+## Run Backend
 
 ```bash
-cp .env.example .env
+npm --prefix backend run dev
 ```
 
-Update the environment variables as required.
+The backend starts at `http://127.0.0.1:4000`.
 
----
+Available routes:
 
-# ▶️ Running the Application
+- `GET /health`
+- `POST /api/chat`
 
-Start development server:
+## Test And Build
 
 ```bash
-npm run dev
+npm run test:ci
+npm run type-check
+npm run build
 ```
 
-Open:
-
-```text
-http://localhost:3000
-```
-
----
-
-# 🧪 Testing
-
-Run Tests:
-
-```bash
-npm test
-```
-
-Generate Coverage Report:
-
-```bash
-npm run coverage
-```
-
----
-
-# 🔍 Code Quality & Security
-
-### Format Code
-
-```bash
-npm run format
-```
-
-### Lint Project
-
-```bash
-npm run lint
-```
-
-### Dead Code Detection
-
-```bash
-npm run deadcode
-```
-
-### Security Scan
-
-```bash
-npm run security
-```
-
----
-
-# 🎯 Use Cases
-
-### For Tourists
-
-- Discover monument history
-- Access multilingual guides
-- Explore heritage interactively
-
-### For Students
-
-- Learn historical facts
-- Conduct educational research
-- Access AI-powered explanations
-
-### For Heritage Authorities
-
-- Receive issue reports
-- Improve site maintenance
-- Increase visitor engagement
-
----
-
-# 🌟 Future Enhancements
-
-- AR-based monument visualization
-- Real-time navigation inside heritage sites
-- Offline voice guides
-- QR code monument scanning
-- AI-generated personalized heritage tours
-- UNESCO heritage integration
-- Mobile application support
-
----
-
-# 🏆 Hackathon Impact
-
-HeritageAI demonstrates how Artificial Intelligence can be used to:
-
-- Preserve cultural heritage
-- Improve tourism experiences
-- Increase accessibility
-- Encourage citizen participation
-- Support digital transformation of heritage management
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to your branch
-5. Create a Pull Request
-
----
-
-# 📄 License
-
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
-
-See the LICENSE file for more information.
-
----
-
-# 👨‍💻 Team
-
-**Team Name:** HeritageAI
-
-Developed for innovation in cultural heritage preservation and digital tourism.
-
----
-
-## 🔗 Links
-
-- Live Demo: https://smart-heritage-demo-t1gm.vercel.app
-- Repository: https://code.swecha.org/lshiva21/heritageai-smart-heritage-guide
-
-⭐ If you like this project, consider giving it a star!
+The Next.js demo frontend still includes its existing API route handlers under `frontend/src/app/api` so the deployed/demo app runs as before. The standalone backend is organized separately for evaluator clarity and future expansion.
