@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:ci": "next build --experimental-build-mode compile",
     "start": "next start",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "lint-staged": "lint-staged",
@@ -18,7 +19,7 @@
     "test:ci": "vitest run",
     "coverage": "vitest run --coverage",
     "audit": "npm audit --audit-level=moderate",
-    "security": "secretlint \"src/**/*\" \"../tests/**/*\" \"../specs/**/*\" \"../docs/**/*\" \"*.{json,md,mjs,ts,yml,yaml}\" \"../*.{json,md,mjs,ts,yml,yaml}\" \"../.github/**/*\" \"../.specify/**/*\"",
+    "security": "secretlint \"src/**/*\" \"../tests/**/*\" \"../specs/**/*\" \"../speckit/**/*\" \"../docs/**/*\" \"*.{json,md,mjs,ts,yml,yaml}\" \"../*.{json,md,mjs,ts,yml,yaml}\" \"../.github/**/*\" \"../.specify/**/*\"",
     "changelog": "git-cliff -o CHANGELOG.md",
     "prepare": "cd .. && husky install .husky"
   },

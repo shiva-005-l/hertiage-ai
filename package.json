@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run frontend:dev",
     "build": "npm run frontend:build",
+    "build:ci": "npm --prefix frontend run build:ci",
     "start": "npm run frontend:start",
     "frontend:dev": "npm --prefix frontend run dev",
     "frontend:build": "npm --prefix frontend run build",
@@ -24,7 +25,7 @@
     "test": "npm --prefix frontend run test",
     "test:ci": "npm --prefix frontend run test:ci",
     "coverage": "npm --prefix frontend run coverage",
-    "security": "npm --prefix frontend exec secretlint -- \"frontend/src/**/*\" \"tests/**/*\" \"specs/**/*\" \"docs/**/*\" \"frontend/*.{json,md,mjs,ts,yml,yaml}\" \"*.{json,md,mjs,ts,yml,yaml}\" \".github/**/*\" \".specify/**/*\""
+    "security": "npm --prefix frontend exec secretlint -- \"frontend/src/**/*\" \"tests/**/*\" \"specs/**/*\" \"speckit/**/*\" \"docs/**/*\" \"frontend/*.{json,md,mjs,ts,yml,yaml}\" \"*.{json,md,mjs,ts,yml,yaml}\" \".github/**/*\" \".specify/**/*\""
   },
   "workspaces": [
     "frontend",

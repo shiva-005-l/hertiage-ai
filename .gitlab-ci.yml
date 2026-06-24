@@ -1,9 +1,8 @@
 stages:
   - audit
-  - lint
-  - format
-  - type_check
+  - quality
   - test
+  - build
   - security
 
 variables:
@@ -19,18 +18,17 @@ cache:
 
 default:
   image: node:20
-  tags:
-    - smart-heritage-node20
+  interruptible: true
   before_script:
     - npm --prefix frontend ci --no-audit --prefer-offline
 
 dependency_audit:
   stage: audit
   script:
-    - npm --prefix frontend audit
+    - npm --prefix frontend audit --audit-level=moderate
 
-lint:
-  stage: lint
+quality:
+  stage: quality
   script:
     - npm run lint
     - npm run check:format
@@ -38,13 +36,8 @@ lint:
     - npm run oxlint
     - npm run deadcode
 
-format:
-  stage: format
-  script:
-    - npm run check:format
-
 type_check:
-  stage: type_check
+  stage: quality
   script:
     - npm run type-check
 
@@ -53,6 +46,11 @@ test:
   script:
     - npm run test:ci
     - npm run coverage
+
+build_compile:
+  stage: build
+  script:
+    - npm run build:ci
 
 secret_scanning:
   stage: security

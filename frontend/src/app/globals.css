@@ -25,6 +25,8 @@
 }
 
 :root {
+  --font-geist-sans: 'Inter', 'Segoe UI', Arial, sans-serif;
+  --font-geist-mono: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
   --background: #fdfbf7;
   --foreground: #1c1917;
   --primary: #c29b62;

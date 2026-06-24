@@ -1,5 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["src/app/**/*.{ts,tsx}", "../tests/frontend-tests/**/*.test.ts"],
   "project": ["src/**/*.{ts,tsx}", "../tests/frontend-tests/**/*.{ts,tsx}"],
   "ignoreDependencies": [
     "@secretlint/secretlint-rule-preset-recommend",
