@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "project": ["src/**/*.{ts,tsx}", "../tests/frontend-tests/**/*.{ts,tsx}"],
+  "ignoreDependencies": [
+    "@secretlint/secretlint-rule-preset-recommend",
+    "tailwindcss"
+  ],
+  "ignoreIssues": {
+    "src/components/ui/card.tsx": ["exports"],
+    "src/components/ui/badge.tsx": ["types"],
+    "src/components/ui/button.tsx": ["types"],
+    "src/services/auth.ts": ["exports"],
+    "src/services/complaints.ts": ["exports"],
+    "src/services/mock-data.ts": ["exports", "types"],
+    "src/services/monument-recognition.ts": ["exports"]
+  }
+}
